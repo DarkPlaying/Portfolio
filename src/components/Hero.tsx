@@ -29,6 +29,10 @@ export function Hero() {
     // Scroll Down Indicator opacity
     const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
 
+    // Hide the entire fixed container when it's fully faded out to prevent "leaks" at the bottom
+    const pointerEvents = useTransform(opacity, [0, 0.1], ["none", "auto"]);
+    const visibility = useTransform(opacity, (val) => val <= 0 ? "hidden" : "visible");
+
 
     useEffect(() => {
         // Preload images
@@ -126,7 +130,7 @@ export function Hero() {
             <div id="about-trigger" className="absolute top-[62.5%] h-1 w-1" />
 
             <motion.div
-                style={{ opacity }}
+                style={{ opacity, pointerEvents, visibility }}
                 className="fixed top-0 left-0 w-full h-screen overflow-hidden block z-0"
             >
 

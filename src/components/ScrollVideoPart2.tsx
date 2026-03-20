@@ -17,8 +17,10 @@ export function ScrollVideoPart2() {
     // Map scroll progress (0 to 1) to frame index (1 to 87)
     const frameIndex = useTransform(scrollYProgress, [0, 1], [1, FRAME_COUNT]);
 
-    // Fade out slightly at the end if desired, or stay fully visible
-    // const opacity = useTransform(scrollYProgress, [0.85, 0.95], [1, 0]);
+    // Fade out slightly at the end to transition smoothly
+    const opacity = useTransform(scrollYProgress, [0.85, 0.95], [1, 0]);
+    const pointerEvents = useTransform(opacity, [0, 0.1], ["none", "auto"]);
+    const visibility = useTransform(opacity, (val) => val <= 0 ? "hidden" : "visible");
 
     useEffect(() => {
         // Preload images
@@ -108,7 +110,10 @@ export function ScrollVideoPart2() {
 
     return (
         <section ref={sectionRef} className="relative h-[300vh] bg-black z-0 snap-start">
-            <motion.div className="sticky top-0 left-0 w-full h-screen overflow-hidden block z-0">
+            <motion.div
+                style={{ opacity, pointerEvents, visibility }}
+                className="sticky top-0 left-0 w-full h-screen overflow-hidden block z-0"
+            >
                 {/* The Image Sequence Canvas */}
                 <canvas
                     ref={canvasRef}

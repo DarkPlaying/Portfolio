@@ -47,8 +47,8 @@ function App() {
           <OtherProjects />
           <TestimonialsSection />
           <Contact />
+          <Footer />
         </main>
-        <Footer />
       </div>
     </Loader >
   );
