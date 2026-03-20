@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
 import { ExternalLink, ShieldAlert, Code2, Award, Terminal, Database, Smartphone } from 'lucide-react';
 
 export function OtherProjects() {
