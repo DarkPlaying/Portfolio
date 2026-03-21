@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
-import { Database, Gamepad2, Network, ShieldCheck, Zap, Terminal, Spade, Diamond, Club, Heart } from 'lucide-react';
+import { Database, Gamepad2, ShieldCheck, Zap, Terminal, Spade, Diamond, Club, Heart } from 'lucide-react';
 import { resumeData } from '../data/resume';
 
 
@@ -235,95 +235,108 @@ export function AliceProjectDetails() {
 
                 {/* System Architecture and Team Content */}
                 <div className="max-w-[100rem] mx-auto px-6 relative z-10">
-                    {/* System Architecture Bento Box */}
-                    <div className="mb-40 overflow-hidden relative z-10">
-                        <motion.div
-                            initial={{ opacity: 0, x: -100 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.8 }}
-                            viewport={{ amount: 0.2 }}
-                            className="flex items-center gap-4 mb-16"
-                        >
-                            <h3 className="text-sm md:text-xl font-black font-outfit uppercase tracking-[0.3em] text-[#ff0050] whitespace-nowrap drop-shadow-[0_0_10px_rgba(255,0,80,0.5)]">System Architecture</h3>
-                            <div className="h-[2px] flex-1 bg-gradient-to-r from-[#ff0050]/50 to-transparent" />
-                        </motion.div>
+                    {/* Redesigned System Architecture Section */}
+                    <div className="mb-40 py-24 relative overflow-hidden">
+                        {/* Background Decorative Elements */}
+                        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#ff0050]/30 to-transparent" />
 
-                        <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-[300px] gap-6">
-                            {/* Box 1: Real-time (Span 8) */}
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+                            {/* Left: Large Vertical Image */}
                             <motion.div
-                                initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ amount: 0.2 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                                className="md:col-span-8 row-span-1 rounded-[2.5rem] md:rounded-[3rem] bg-black/60 backdrop-blur-3xl border border-white/10 p-8 md:p-12 flex flex-col relative overflow-hidden group hover:border-[#ff0050]/50 transition-all duration-700 shadow-[0_0_40px_rgba(0,0,0,0.5)] hover:shadow-[0_0_60px_rgba(255,0,80,0.2)]"
+                                initial={{ opacity: 0, x: -50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.8 }}
+                                className="relative group"
                             >
-                                <div className="absolute inset-0 bg-gradient-to-br from-[#ff0050]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                                <div className="absolute top-0 right-0 p-12 opacity-5 group-hover:opacity-20 transition-all duration-1000 group-hover:scale-110 z-0">
-                                    <Network size={220} className="text-[#ff0050]" strokeWidth={0.5} />
-                                </div>
-                                <div className="relative z-10 w-16 h-16 rounded-2xl bg-[#ff0050]/10 flex items-center justify-center mb-8 border border-[#ff0050]/20 shadow-[0_0_30px_rgba(255,0,80,0.2)] backdrop-blur-md">
-                                    <Zap className="text-[#ff0050]" />
-                                </div>
-                                <h4 className="relative z-10 text-2xl md:text-4xl font-black font-outfit mb-4 uppercase tracking-widest md:tracking-[0.2em] text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">Real-time Multiplayer</h4>
-                                <p className="relative z-10 text-zinc-400 max-w-lg leading-relaxed text-xl font-light">Powered by <span className="text-[#ff0050] font-bold">Supabase Realtime</span> to strictly synchronize phase timers, game events, and active player lists.</p>
+                                <div className="absolute -inset-4 bg-[#ff0050]/10 blur-2xl rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                                <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] md:rounded-[3.5rem] border border-white/10 shadow-2xl">
+                                    <img
+                                        src={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/me/ezgif-frame-001.jpg`}
+                                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
+                                        alt="Technical Architecture focus"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60" />
 
-                                <div className="absolute bottom-6 right-10 text-8xl font-serif text-[#ff0050] opacity-10 select-none pointer-events-none">♠</div>
-                            </motion.div>
-
-                            {/* Box 2: Database (Span 4) */}
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ amount: 0.2 }} transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                                className="md:col-span-4 row-span-1 rounded-[2.5rem] md:rounded-[3rem] bg-black/60 backdrop-blur-3xl border border-white/10 p-8 md:p-12 flex flex-col group relative overflow-hidden hover:border-[#ff0050]/50 transition-all duration-700 shadow-[0_0_40px_rgba(0,0,0,0.5)] hover:shadow-[0_0_60px_rgba(255,0,80,0.2)]"
-                            >
-                                <div className="absolute inset-0 bg-gradient-to-bl from-[#ff0050]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                                <div className="absolute -right-8 -bottom-8 opacity-5 group-hover:opacity-20 transition-all duration-1000 z-0">
-                                    <Database size={220} className="text-zinc-200" strokeWidth={0.5} />
-                                </div>
-                                <h4 className="relative z-10 text-2xl md:text-4xl font-black font-outfit mb-4 uppercase tracking-widest md:tracking-[0.2em] text-white drop-shadow-md">PostgreSQL Core</h4>
-                                <p className="relative z-10 text-zinc-400 leading-relaxed font-light mt-auto text-lg">Absolute source of truth, persistently storing relational schemas.</p>
-                                <div className="mt-8 flex items-center gap-3 text-xs font-mono text-[#ff0050] uppercase tracking-widest bg-[#ff0050]/5 backdrop-blur-md w-fit px-5 py-2.5 rounded-xl border border-[#ff0050]/20 relative z-10 shadow-[0_0_20px_rgba(255,0,80,0.1)]">
-                                    <span className="w-2 h-2 bg-[#ff0050] rounded-full animate-ping shadow-[0_0_10px_#ff0050]" /> Connected
-                                </div>
-                                <div className="absolute top-6 right-10 text-6xl font-serif text-[#ff0050] opacity-10 select-none pointer-events-none">♦</div>
-                            </motion.div>
-
-                            {/* Box 3: Game Master (Span 5) */}
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ amount: 0.2 }} transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                                className="md:col-span-5 row-span-1 rounded-[2.5rem] md:rounded-[3rem] bg-black/60 backdrop-blur-3xl border border-white/10 p-8 md:p-12 flex flex-col group hover:border-[#ff0050]/50 transition-all duration-700 shadow-[0_0_40px_rgba(0,0,0,0.5)] hover:shadow-[0_0_60px_rgba(255,0,80,0.2)] relative overflow-hidden"
-                            >
-                                <div className="absolute inset-0 bg-gradient-to-tr from-[#ff0050]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                                <div className="flex items-center justify-between mb-10 relative z-10">
-                                    <div className="w-16 h-16 rounded-2xl bg-white/[0.05] backdrop-blur-md flex items-center justify-center border border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)]">
-                                        <ShieldCheck size={32} className="text-zinc-200" />
+                                    {/* Overlay Number/Text if needed, or just let the image shine */}
+                                    <div className="absolute bottom-10 left-10">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-8 h-px bg-[#ff0050]" />
+                                            <span className="text-[10px] font-mono font-bold text-[#ff0050] uppercase tracking-[0.5em]">System_Core</span>
+                                        </div>
                                     </div>
-                                    <span className="text-[10px] uppercase tracking-[0.2em] font-black font-outfit text-[#ff0050] border border-[#ff0050]/40 bg-[#ff0050]/10 backdrop-blur-md px-5 py-2 rounded-xl">Clearance V</span>
                                 </div>
-                                <h4 className="relative z-10 text-2xl md:text-4xl font-black font-outfit mb-4 uppercase tracking-widest md:tracking-[0.2em] text-white drop-shadow-md">Game Master</h4>
-                                <p className="relative z-10 text-zinc-400 leading-relaxed font-light text-lg">Centralized architecture controlling phase loops, durations, and logic dispute resolution.</p>
-                                <div className="absolute bottom-6 right-10 text-8xl font-serif text-[#ff0050] opacity-10 select-none pointer-events-none">♣</div>
                             </motion.div>
 
-                            {/* Box 4: UI & Stack (Span 7) */}
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ amount: 0.2 }} transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                                className="md:col-span-7 row-span-1 min-h-[400px] md:min-h-0 rounded-[2.5rem] md:rounded-[3rem] bg-black/60 backdrop-blur-3xl border border-white/10 p-8 md:p-12 flex flex-col justify-between hover:border-[#ff0050]/50 transition-all duration-700 shadow-[0_0_40px_rgba(0,0,0,0.5)] hover:shadow-[0_0_60px_rgba(255,0,80,0.2)] relative overflow-hidden"
-                            >
-                                <div className="absolute inset-0 bg-gradient-to-tl from-[#ff0050]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0" />
-                                <div className="relative z-10">
-                                    <h4 className="text-xl md:text-4xl font-black font-outfit mb-5 uppercase tracking-widest md:tracking-[0.2em] text-white flex items-center gap-4 md:gap-5">
-                                        <Gamepad2 size={isMobile ? 28 : 40} className="text-[#ff0050] drop-shadow-[0_0_15px_#ff0050]" /> <span className="text-xl md:text-4xl">Cinematic Experience</span>
-                                    </h4>
-                                    <p className="text-zinc-400 font-light leading-relaxed max-w-xl text-lg">A dark, premium aesthetic focusing on glitch effects, and precise utility styling to evoke an atmosphere of imminent danger.</p>
+                            {/* Right: Content & Title */}
+                            <div className="flex flex-col">
+                                {/* Title with Signature Style */}
+                                <div className="relative mb-16">
+                                    <h2 className="text-6xl md:text-8xl font-black font-outfit text-white tracking-tighter leading-none uppercase">
+                                        System <br />
+                                        <span className="opacity-80">Architecture</span>
+                                    </h2>
+                                    <span className="absolute top-[40%] right-[-10px] md:right-[-40px] font-signature text-4xl md:text-7xl text-[#ff0050] opacity-90 rotate-[-10deg] pointer-events-none drop-shadow-xl">
+                                        Technical
+                                    </span>
                                 </div>
 
-                                <div className="flex flex-wrap gap-3 mt-10 relative z-10">
-                                    {["React 19", "TS", "Vite", "Tailwind", "Framer", "Supabase"].map(tech => (
-                                        <span key={tech} className="px-5 py-2.5 rounded-xl bg-white/[0.05] backdrop-blur-md border border-white/10 text-[10px] font-black font-outfit text-zinc-200 uppercase tracking-widest hover:bg-[#ff0050]/20 hover:text-white transition-all hover:border-[#ff0050]/50 hover:shadow-[0_0_20px_rgba(255,0,80,0.3)] cursor-default">
-                                            {tech}
-                                        </span>
+                                {/* Bulleted List */}
+                                <div className="space-y-12">
+                                    {[
+                                        {
+                                            icon: Zap,
+                                            title: "Real-time Multiplayer",
+                                            desc: "Powered by Supabase Realtime to strictly synchronize phase timers, game events, and active player lists."
+                                        },
+                                        {
+                                            icon: Database,
+                                            title: "PostgreSQL Core",
+                                            desc: "Absolute source of truth, persistently storing relational schemas and project metadata."
+                                        },
+                                        {
+                                            icon: ShieldCheck,
+                                            title: "Game Master",
+                                            desc: "Centralized logic engine controlling loop durations, security loops, and dispute resolutions."
+                                        },
+                                        {
+                                            icon: Gamepad2,
+                                            title: "Cinematic Experience",
+                                            desc: "A dark, premium aesthetic focusing on glitch effects and precise utility styling."
+                                        }
+                                    ].map((item, idx) => (
+                                        <motion.div
+                                            key={idx}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            whileInView={{ opacity: 1, y: 0 }}
+                                            transition={{ duration: 0.5, delay: idx * 0.1 }}
+                                            className="flex items-start gap-6 group"
+                                        >
+                                            <div className="mt-1 flex-shrink-0">
+                                                <div className="w-5 h-5 rounded-full border-2 border-[#ff0050] flex items-center justify-center p-1 group-hover:bg-[#ff0050] transition-colors duration-300">
+                                                    <div className="w-1 h-1 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h4 className="text-xl md:text-2xl font-bold font-outfit text-white mb-2 uppercase tracking-widest flex items-center gap-3">
+                                                    {item.title}
+                                                    <item.icon size={16} className="text-[#ff0050] opacity-50 group-hover:opacity-100 transition-opacity" />
+                                                </h4>
+                                                <p className="text-zinc-500 text-sm md:text-base font-light font-sans max-w-md leading-relaxed tracking-wide group-hover:text-zinc-300 transition-colors">
+                                                    {item.desc}
+                                                </p>
+                                            </div>
+                                        </motion.div>
                                     ))}
                                 </div>
-                                <div className="absolute -bottom-8 -right-8 text-[12rem] font-serif text-[#ff0050] opacity-[0.05] select-none pointer-events-none -rotate-12">♥</div>
-                            </motion.div>
+
+                                {/* Decorative Line */}
+                                <div className="mt-20 h-[1px] w-32 bg-gradient-to-r from-[#ff0050] to-transparent opacity-40" />
+                            </div>
                         </div>
+
+                        {/* Background Detail */}
+                        <div className="absolute -bottom-20 -right-20 text-[20rem] font-serif text-[#ff0050] opacity-[0.03] select-none pointer-events-none rotate-12">♥</div>
                     </div>
 
                     {/* Team Section (Only Sanjay) */}
