@@ -269,13 +269,13 @@ export function AliceProjectDetails() {
 
                             {/* Right: Content & Title */}
                             <div className="flex flex-col">
-                                {/* Title with Signature Style */}
-                                <div className="relative mb-10">
-                                    <h2 className="text-5xl md:text-7xl font-black font-outfit text-white tracking-tighter leading-none uppercase">
+                                {/* Title with Signature Style (Bebas Neue) - Balanced */}
+                                <div className="relative mb-14">
+                                    <h2 className="text-6xl md:text-8xl font-bebas text-white tracking-[0.05em] leading-[0.8] uppercase">
                                         System <br />
-                                        <span className="opacity-80 text-4xl md:text-6xl">Architecture</span>
+                                        <span className="opacity-80 text-5xl md:text-7xl">Objective</span>
                                     </h2>
-                                    <span className="absolute top-[35%] right-[0px] md:right-[-20px] font-signature text-3xl md:text-5xl text-[#ff0050] opacity-90 rotate-[-12deg] pointer-events-none drop-shadow-lg">
+                                    <span className="absolute top-[30%] right-[0%] md:right-[5%] lg:right-[10%] font-signature text-6xl md:text-8xl lg:text-9xl text-[#ff0050] opacity-90 rotate-[-10deg] pointer-events-none drop-shadow-[0_0_30px_rgba(255,0,80,0.5)] z-20">
                                         Technical
                                     </span>
                                 </div>
