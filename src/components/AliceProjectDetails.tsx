@@ -235,73 +235,73 @@ export function AliceProjectDetails() {
 
                 {/* System Architecture and Team Content */}
                 <div className="max-w-[100rem] mx-auto px-6 relative z-10">
-                    {/* Polished System Architecture Section */}
+                    {/* Optimized System Objective Section */}
                     <div className="mb-24 py-16 relative overflow-hidden">
                         {/* Background Decorative Elements */}
                         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff0050]/20 to-transparent" />
 
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-                            {/* Left: Project Image (Alice.png) - Better Fit */}
+                            {/* Left: Project Image (Rectangle Fit) */}
                             <motion.div
                                 initial={{ opacity: 0, x: -30 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8 }}
-                                className="relative group w-full max-w-lg lg:max-w-none mx-auto lg:mx-0"
+                                className="relative group w-full mx-auto lg:mx-0"
                             >
                                 <div className="absolute -inset-6 bg-[#ff0050]/5 blur-3xl rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                                <div className="relative aspect-square overflow-hidden rounded-[2.5rem] md:rounded-[3.5rem] border border-white/10 shadow-2xl bg-zinc-950">
+                                <div className="relative aspect-[16/10] overflow-hidden rounded-[2rem] md:rounded-[3rem] border border-white/10 shadow-2xl bg-zinc-950">
                                     <img
                                         src={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/projects/alice.png`}
                                         className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
-                                        alt="Alice Project Architecture"
+                                        alt="Alice Project Objective"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80" />
 
                                     <div className="absolute bottom-8 left-8">
                                         <div className="flex items-center gap-3">
                                             <div className="w-10 h-px bg-[#ff0050]" />
-                                            <span className="text-[10px] font-mono font-bold text-[#ff0050] uppercase tracking-[0.6em]">System_Node_01</span>
+                                            <span className="text-[10px] font-mono font-bold text-[#ff0050] uppercase tracking-[0.6em]">Core_Objective</span>
                                         </div>
                                     </div>
                                 </div>
                             </motion.div>
 
-                            {/* Right: Content & Title - Improved Alignment */}
-                            <div className="flex flex-col text-left">
-                                {/* Title with Signature Style - Improved Positioning */}
-                                <div className="relative mb-12">
-                                    <h2 className="text-5xl md:text-7xl lg:text-8xl font-black font-outfit text-white tracking-tighter leading-none uppercase">
+                            {/* Right: Content & Title - Ultra Large Title */}
+                            <div className="flex flex-col text-left lg:pl-10">
+                                {/* Title with Signature Style */}
+                                <div className="relative mb-14">
+                                    <h2 className="text-6xl md:text-8xl lg:text-9xl font-black font-outfit text-white tracking-tighter leading-[0.85] uppercase">
                                         System <br />
-                                        <span className="opacity-80 text-4xl md:text-6xl lg:text-7xl">Architecture</span>
+                                        <span className="opacity-80 text-5xl md:text-7xl lg:text-8xl">Objective</span>
                                     </h2>
-                                    <span className="absolute top-[35%] right-[5%] md:right-[15%] lg:right-[25%] font-signature text-5xl md:text-6xl lg:text-7xl text-[#ff0050] opacity-90 rotate-[-12deg] pointer-events-none drop-shadow-[0_0_20px_rgba(255,0,80,0.4)] z-20">
+                                    <span className="absolute top-[35%] right-[0%] md:right-[5%] lg:right-[15%] font-signature text-6xl md:text-8xl lg:text-9xl text-[#ff0050] opacity-90 rotate-[-12deg] pointer-events-none drop-shadow-[0_0_30px_rgba(255,0,80,0.5)] z-20">
                                         Technical
                                     </span>
                                 </div>
 
-                                {/* Bulleted List (Cleaner Spacing) */}
+                                {/* Bulleted List (Balanced) */}
                                 <div className="space-y-8">
                                     {[
                                         {
                                             icon: Zap,
                                             title: "Real-time Multiplayer",
-                                            desc: "Supabase Realtime provides instant synchronization for phase timers and player lists across all clients."
+                                            desc: "Instant synchronization for phase timers and player lists across all clients using Supabase."
                                         },
                                         {
                                             icon: Database,
                                             title: "PostgreSQL Core",
-                                            desc: "Robust relational database ensuring consistency and reliability for all persistent game data."
+                                            desc: "Robust relational database ensuring consistency for all persistent game data."
                                         },
                                         {
                                             icon: ShieldCheck,
                                             title: "Game Master",
-                                            desc: "A centralized authority layer managing loop logic, dispute resolutions, and system-wide state."
+                                            desc: "Centralized authority layer managing loop logic and system-wide state."
                                         },
                                         {
                                             icon: Gamepad2,
                                             title: "Immersive UI/UX",
-                                            desc: "High-performance glitch effects and stylized components built to evoke a sense of imminent danger."
+                                            desc: "High-performance glitch effects designed to evoke a sense of imminent danger."
                                         }
                                     ].map((item, idx) => (
                                         <motion.div
@@ -313,18 +313,18 @@ export function AliceProjectDetails() {
                                         >
                                             <div className="mt-1.5 flex-shrink-0">
                                                 <div className="relative">
-                                                    <div className="w-5 h-5 rounded-full border-2 border-[#ff0050] flex items-center justify-center p-0.5 group-hover:bg-[#ff0050] transition-all duration-300">
-                                                        <div className="w-1 h-1 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                    <div className="w-6 h-6 rounded-full border-2 border-[#ff0050] flex items-center justify-center p-0.5 group-hover:bg-[#ff0050] transition-all duration-300">
+                                                        <div className="w-1.5 h-1.5 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                                     </div>
-                                                    <div className="absolute -inset-1 border border-[#ff0050]/20 rounded-full group-hover:scale-150 group-hover:opacity-0 transition-all duration-700" />
+                                                    <div className="absolute -inset-2 border border-[#ff0050]/20 rounded-full group-hover:scale-150 group-hover:opacity-0 transition-all duration-700" />
                                                 </div>
                                             </div>
                                             <div>
-                                                <h4 className="text-xl md:text-2xl font-bold font-outfit text-white mb-2 uppercase tracking-widest flex items-center gap-3">
+                                                <h4 className="text-2xl md:text-3xl font-bold font-outfit text-white mb-2 uppercase tracking-widest flex items-center gap-3">
                                                     {item.title}
-                                                    <item.icon size={16} className="text-[#ff0050] opacity-30 group-hover:opacity-100 transition-opacity" />
+                                                    <item.icon size={18} className="text-[#ff0050] opacity-30 group-hover:opacity-100 transition-opacity" />
                                                 </h4>
-                                                <p className="text-zinc-500 text-sm md:text-base font-light font-sans max-w-lg leading-relaxed group-hover:text-zinc-300 transition-colors">
+                                                <p className="text-zinc-500 text-base md:text-lg font-light font-sans max-w-lg leading-relaxed group-hover:text-zinc-300 transition-colors">
                                                     {item.desc}
                                                 </p>
                                             </div>
