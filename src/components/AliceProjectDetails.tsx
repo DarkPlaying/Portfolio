@@ -235,148 +235,146 @@ export function AliceProjectDetails() {
 
                 {/* System Architecture and Team Content */}
                 <div className="max-w-[100rem] mx-auto px-6 relative z-10">
-                    {/* Redesigned System Architecture Section */}
-                    <div className="mb-40 py-24 relative overflow-hidden">
+                    {/* Polished System Architecture Section */}
+                    <div className="mb-24 py-16 relative overflow-hidden">
                         {/* Background Decorative Elements */}
-                        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#ff0050]/30 to-transparent" />
+                        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff0050]/20 to-transparent" />
 
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-                            {/* Left: Large Vertical Image */}
+                            {/* Left: Project Image (Alice.png) - Better Fit */}
                             <motion.div
-                                initial={{ opacity: 0, x: -50 }}
+                                initial={{ opacity: 0, x: -30 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8 }}
-                                className="relative group"
+                                className="relative group w-full max-w-lg lg:max-w-none mx-auto lg:mx-0"
                             >
-                                <div className="absolute -inset-4 bg-[#ff0050]/10 blur-2xl rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                                <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] md:rounded-[3.5rem] border border-white/10 shadow-2xl">
+                                <div className="absolute -inset-6 bg-[#ff0050]/5 blur-3xl rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                                <div className="relative aspect-square overflow-hidden rounded-[2.5rem] md:rounded-[3.5rem] border border-white/10 shadow-2xl bg-zinc-950">
                                     <img
-                                        src={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/me/ezgif-frame-001.jpg`}
+                                        src={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/projects/alice.png`}
                                         className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
-                                        alt="Technical Architecture focus"
+                                        alt="Alice Project Architecture"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
 
-                                    {/* Overlay Number/Text if needed, or just let the image shine */}
-                                    <div className="absolute bottom-10 left-10">
+                                    <div className="absolute bottom-8 left-8">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-8 h-px bg-[#ff0050]" />
-                                            <span className="text-[10px] font-mono font-bold text-[#ff0050] uppercase tracking-[0.5em]">System_Core</span>
+                                            <div className="w-10 h-px bg-[#ff0050]" />
+                                            <span className="text-[10px] font-mono font-bold text-[#ff0050] uppercase tracking-[0.6em]">System_Node_01</span>
                                         </div>
                                     </div>
                                 </div>
                             </motion.div>
 
-                            {/* Right: Content & Title */}
-                            <div className="flex flex-col">
-                                {/* Title with Signature Style */}
-                                <div className="relative mb-16">
-                                    <h2 className="text-6xl md:text-8xl font-black font-outfit text-white tracking-tighter leading-none uppercase">
+                            {/* Right: Content & Title - Improved Alignment */}
+                            <div className="flex flex-col text-left">
+                                {/* Title with Signature Style - Improved Positioning */}
+                                <div className="relative mb-12">
+                                    <h2 className="text-5xl md:text-7xl lg:text-8xl font-black font-outfit text-white tracking-tighter leading-none uppercase">
                                         System <br />
-                                        <span className="opacity-80">Architecture</span>
+                                        <span className="opacity-80 text-4xl md:text-6xl lg:text-7xl">Architecture</span>
                                     </h2>
-                                    <span className="absolute top-[40%] right-[-10px] md:right-[-40px] font-signature text-4xl md:text-7xl text-[#ff0050] opacity-90 rotate-[-10deg] pointer-events-none drop-shadow-xl">
+                                    <span className="absolute top-[35%] right-[5%] md:right-[15%] lg:right-[25%] font-signature text-5xl md:text-6xl lg:text-7xl text-[#ff0050] opacity-90 rotate-[-12deg] pointer-events-none drop-shadow-[0_0_20px_rgba(255,0,80,0.4)] z-20">
                                         Technical
                                     </span>
                                 </div>
 
-                                {/* Bulleted List */}
-                                <div className="space-y-12">
+                                {/* Bulleted List (Cleaner Spacing) */}
+                                <div className="space-y-8">
                                     {[
                                         {
                                             icon: Zap,
                                             title: "Real-time Multiplayer",
-                                            desc: "Powered by Supabase Realtime to strictly synchronize phase timers, game events, and active player lists."
+                                            desc: "Supabase Realtime provides instant synchronization for phase timers and player lists across all clients."
                                         },
                                         {
                                             icon: Database,
                                             title: "PostgreSQL Core",
-                                            desc: "Absolute source of truth, persistently storing relational schemas and project metadata."
+                                            desc: "Robust relational database ensuring consistency and reliability for all persistent game data."
                                         },
                                         {
                                             icon: ShieldCheck,
                                             title: "Game Master",
-                                            desc: "Centralized logic engine controlling loop durations, security loops, and dispute resolutions."
+                                            desc: "A centralized authority layer managing loop logic, dispute resolutions, and system-wide state."
                                         },
                                         {
                                             icon: Gamepad2,
-                                            title: "Cinematic Experience",
-                                            desc: "A dark, premium aesthetic focusing on glitch effects and precise utility styling."
+                                            title: "Immersive UI/UX",
+                                            desc: "High-performance glitch effects and stylized components built to evoke a sense of imminent danger."
                                         }
                                     ].map((item, idx) => (
                                         <motion.div
                                             key={idx}
-                                            initial={{ opacity: 0, y: 20 }}
+                                            initial={{ opacity: 0, y: 15 }}
                                             whileInView={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.5, delay: idx * 0.1 }}
                                             className="flex items-start gap-6 group"
                                         >
-                                            <div className="mt-1 flex-shrink-0">
-                                                <div className="w-5 h-5 rounded-full border-2 border-[#ff0050] flex items-center justify-center p-1 group-hover:bg-[#ff0050] transition-colors duration-300">
-                                                    <div className="w-1 h-1 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                                            <div className="mt-1.5 flex-shrink-0">
+                                                <div className="relative">
+                                                    <div className="w-5 h-5 rounded-full border-2 border-[#ff0050] flex items-center justify-center p-0.5 group-hover:bg-[#ff0050] transition-all duration-300">
+                                                        <div className="w-1 h-1 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                    </div>
+                                                    <div className="absolute -inset-1 border border-[#ff0050]/20 rounded-full group-hover:scale-150 group-hover:opacity-0 transition-all duration-700" />
                                                 </div>
                                             </div>
                                             <div>
                                                 <h4 className="text-xl md:text-2xl font-bold font-outfit text-white mb-2 uppercase tracking-widest flex items-center gap-3">
                                                     {item.title}
-                                                    <item.icon size={16} className="text-[#ff0050] opacity-50 group-hover:opacity-100 transition-opacity" />
+                                                    <item.icon size={16} className="text-[#ff0050] opacity-30 group-hover:opacity-100 transition-opacity" />
                                                 </h4>
-                                                <p className="text-zinc-500 text-sm md:text-base font-light font-sans max-w-md leading-relaxed tracking-wide group-hover:text-zinc-300 transition-colors">
+                                                <p className="text-zinc-500 text-sm md:text-base font-light font-sans max-w-lg leading-relaxed group-hover:text-zinc-300 transition-colors">
                                                     {item.desc}
                                                 </p>
                                             </div>
                                         </motion.div>
                                     ))}
                                 </div>
-
-                                {/* Decorative Line */}
-                                <div className="mt-20 h-[1px] w-32 bg-gradient-to-r from-[#ff0050] to-transparent opacity-40" />
                             </div>
                         </div>
-
-                        {/* Background Detail */}
-                        <div className="absolute -bottom-20 -right-20 text-[20rem] font-serif text-[#ff0050] opacity-[0.03] select-none pointer-events-none rotate-12">♥</div>
                     </div>
 
-                    {/* Team Section (Only Sanjay) */}
-                    <div className="pb-32 pt-20 relative z-10">
+                    {/* Background Detail */}
+                    <div className="absolute -bottom-20 -right-20 text-[20rem] font-serif text-[#ff0050] opacity-[0.03] select-none pointer-events-none rotate-12">♥</div>
+                </div>
+
+                {/* Team Section (Only Sanjay) */}
+                <div className="pb-32 pt-20 relative z-10">
+                    <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        viewport={{ amount: 0.2 }}
+                        className="text-center mb-16"
+                    >
+                        <h2 className="text-sm font-bold font-outfit text-[#ff0050] uppercase tracking-[0.4em] mb-4 drop-shadow-[0_0_10px_rgba(255,0,80,0.5)]">Architects of the Borderland</h2>
+                        <h3 className="text-4xl md:text-6xl font-black font-outfit uppercase tracking-tighter text-white">The Makers</h3>
+                    </motion.div>
+
+                    <div className="flex justify-center">
                         <motion.div
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8 }}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ amount: 0.2 }}
-                            className="text-center mb-16"
+                            transition={{ duration: 0.8 }}
+                            className="w-full md:w-[650px] rounded-[2.5rem] md:rounded-[3.5rem] bg-black/60 backdrop-blur-3xl border border-white/10 p-8 md:p-14 flex flex-col md:flex-row items-center text-center md:text-left gap-8 md:gap-14 hover:border-[#ff0050]/50 transition-all duration-700 group shadow-[0_0_50px_rgba(0,0,0,0.6)] hover:shadow-[0_0_80px_rgba(255,0,80,0.25)] relative overflow-hidden"
                         >
-                            <h2 className="text-sm font-bold font-outfit text-[#ff0050] uppercase tracking-[0.4em] mb-4 drop-shadow-[0_0_10px_rgba(255,0,80,0.5)]">Architects of the Borderland</h2>
-                            <h3 className="text-4xl md:text-6xl font-black font-outfit uppercase tracking-tighter text-white">The Makers</h3>
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#ff0050]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                            <div className="w-20 h-20 md:w-32 md:h-32 rounded-2xl md:rounded-[2.5rem] bg-gradient-to-br from-white/10 to-transparent border border-white/20 flex items-center justify-center text-4xl md:text-6xl font-black font-outfit shadow-2xl group-hover:border-[#ff0050]/50 group-hover:text-[#ff0050] group-hover:shadow-[0_0_40px_rgba(255,0,80,0.5)] transition-all duration-500 backdrop-blur-xl relative z-10 text-white">
+                                S
+                            </div>
+                            <div className="relative z-10 flex flex-col items-center md:items-start">
+                                <h4 className="text-2xl md:text-4xl font-black font-outfit uppercase tracking-widest md:tracking-[0.2em] text-white mb-2 md:mb-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">Sanjay M</h4>
+                                <p className="text-[10px] md:text-sm font-mono text-zinc-500 mb-6 md:mb-8 uppercase tracking-widest md:tracking-[0.3em]">Lead Architect</p>
+                                <a href={`mailto:${resumeData.contact.email}`} className="text-[9px] md:text-xs text-white transition-all duration-300 uppercase tracking-[0.2em] md:tracking-[0.4em] font-black flex items-center gap-3 md:gap-4 bg-white/5 backdrop-blur-md w-fit px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl border border-white/10 hover:border-[#ff0050]/60 hover:bg-[#ff0050]/20 shadow-lg hover:shadow-[0_0_30px_rgba(255,0,80,0.3)] group/btn">
+                                    <Terminal size={16} className="text-[#ff0050] transition-transform group-hover/btn:scale-125" /> Establish Link
+                                </a>
+                            </div>
+                            {/* Watermark for Sanjay */}
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[12rem] md:text-[20rem] font-serif text-[#ff0050] opacity-[0.03] select-none pointer-events-none transition-all duration-1000 group-hover:scale-150 group-hover:rotate-12 group-hover:opacity-[0.08]">♠</div>
                         </motion.div>
-
-                        <div className="flex justify-center">
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ amount: 0.2 }}
-                                transition={{ duration: 0.8 }}
-                                className="w-full md:w-[650px] rounded-[2.5rem] md:rounded-[3.5rem] bg-black/60 backdrop-blur-3xl border border-white/10 p-8 md:p-14 flex flex-col md:flex-row items-center text-center md:text-left gap-8 md:gap-14 hover:border-[#ff0050]/50 transition-all duration-700 group shadow-[0_0_50px_rgba(0,0,0,0.6)] hover:shadow-[0_0_80px_rgba(255,0,80,0.25)] relative overflow-hidden"
-                            >
-                                <div className="absolute inset-0 bg-gradient-to-r from-[#ff0050]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                                <div className="w-20 h-20 md:w-32 md:h-32 rounded-2xl md:rounded-[2.5rem] bg-gradient-to-br from-white/10 to-transparent border border-white/20 flex items-center justify-center text-4xl md:text-6xl font-black font-outfit shadow-2xl group-hover:border-[#ff0050]/50 group-hover:text-[#ff0050] group-hover:shadow-[0_0_40px_rgba(255,0,80,0.5)] transition-all duration-500 backdrop-blur-xl relative z-10 text-white">
-                                    S
-                                </div>
-                                <div className="relative z-10 flex flex-col items-center md:items-start">
-                                    <h4 className="text-2xl md:text-4xl font-black font-outfit uppercase tracking-widest md:tracking-[0.2em] text-white mb-2 md:mb-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">Sanjay M</h4>
-                                    <p className="text-[10px] md:text-sm font-mono text-zinc-500 mb-6 md:mb-8 uppercase tracking-widest md:tracking-[0.3em]">Lead Architect</p>
-                                    <a href={`mailto:${resumeData.contact.email}`} className="text-[9px] md:text-xs text-white transition-all duration-300 uppercase tracking-[0.2em] md:tracking-[0.4em] font-black flex items-center gap-3 md:gap-4 bg-white/5 backdrop-blur-md w-fit px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl border border-white/10 hover:border-[#ff0050]/60 hover:bg-[#ff0050]/20 shadow-lg hover:shadow-[0_0_30px_rgba(255,0,80,0.3)] group/btn">
-                                        <Terminal size={16} className="text-[#ff0050] transition-transform group-hover/btn:scale-125" /> Establish Link
-                                    </a>
-                                </div>
-                                {/* Watermark for Sanjay */}
-                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[12rem] md:text-[20rem] font-serif text-[#ff0050] opacity-[0.03] select-none pointer-events-none transition-all duration-1000 group-hover:scale-150 group-hover:rotate-12 group-hover:opacity-[0.08]">♠</div>
-                            </motion.div>
-                        </div>
                     </div>
-
                 </div>
             </div>
         </section>
