@@ -89,11 +89,11 @@ export function Contact() {
                                 <Download size={28} />
                             </div>
 
-                            <h4 className="text-2xl font-bold font-outfit text-white uppercase tracking-widest mb-4 relative z-10">Personnel File</h4>
+                            <h4 className="text-2xl font-bold font-outfit text-white uppercase tracking-widest mb-4 relative z-10">Resume File</h4>
                             <p className="text-zinc-500 text-sm font-light mb-8 max-w-[240px] relative z-10 opacity-70">Download the detailed technical dossier (Resume).</p>
 
                             <a
-                                href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/Resume (Sanjay M - B.Sc (CS) ).pdf`}
+                                href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/resume.pdf`}
                                 download="Sanjay_Resume.pdf"
                                 className="w-full bg-[#ff0050] hover:bg-[#ff0050]/90 text-white font-bold font-outfit uppercase tracking-widest py-4 rounded-xl transition-all hover:shadow-[0_0_25px_rgba(255,0,80,0.3)] relative z-10"
                             >

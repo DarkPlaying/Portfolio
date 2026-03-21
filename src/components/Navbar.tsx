@@ -39,7 +39,7 @@ export function Navbar() {
 
                 <div className="hidden md:block">
                     <a
-                        href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/Resume (Sanjay M - B.Sc (CS) ).pdf`}
+                        href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/resume.pdf`}
                         download="Sanjay_Resume.pdf"
                         className="bg-white text-black px-6 py-2.5 rounded-xl font-black font-outfit text-xs uppercase tracking-widest hover:bg-[#ff0050] hover:text-white transition-all hover:shadow-[0_0_20px_rgba(255,0,80,0.4)]"
                     >
@@ -70,7 +70,7 @@ export function Navbar() {
                         </a>
                     ))}
                     <a
-                        href="/Resume (Sanjay M - B.Sc (CS) ).pdf"
+                        href="/resume.pdf"
                         download="Sanjay_Resume.pdf"
                         className="bg-white text-black px-6 py-3 rounded-full font-semibold mt-4 hover:bg-gray-200 transition-colors text-center w-3/4"
                     >
