@@ -235,73 +235,73 @@ export function AliceProjectDetails() {
 
                 {/* System Architecture and Team Content */}
                 <div className="max-w-[100rem] mx-auto px-6 relative z-10">
-                    {/* Optimized System Objective Section */}
-                    <div className="mb-24 py-16 relative overflow-hidden">
+                    {/* Refined System Architecture Section */}
+                    <div className="mb-20 py-12 relative overflow-hidden">
                         {/* Background Decorative Elements */}
-                        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff0050]/20 to-transparent" />
+                        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#ff0050]/20 to-transparent" />
 
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 
-                            {/* Left: Project Image (Rectangle Fit) */}
+                            {/* Left: Project Image (Alice.png) */}
                             <motion.div
                                 initial={{ opacity: 0, x: -30 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8 }}
-                                className="relative group w-full mx-auto lg:mx-0"
+                                className="relative group lg:max-w-md mx-auto"
                             >
-                                <div className="absolute -inset-6 bg-[#ff0050]/5 blur-3xl rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                                <div className="relative aspect-[16/10] overflow-hidden rounded-[2rem] md:rounded-[3rem] border border-white/10 shadow-2xl bg-zinc-950">
+                                <div className="absolute -inset-4 bg-[#ff0050]/5 blur-2xl rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                                <div className="relative aspect-square overflow-hidden rounded-[2rem] md:rounded-[2.5rem] border border-white/10 shadow-xl">
                                     <img
                                         src={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/projects/alice.png`}
                                         className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
-                                        alt="Alice Project Objective"
+                                        alt="Alice Project Architecture"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
 
-                                    <div className="absolute bottom-8 left-8">
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-10 h-px bg-[#ff0050]" />
-                                            <span className="text-[10px] font-mono font-bold text-[#ff0050] uppercase tracking-[0.6em]">Core_Objective</span>
+                                    <div className="absolute bottom-6 left-6">
+                                        <div className="flex items-center gap-2">
+                                            <div className="w-6 h-px bg-[#ff0050]" />
+                                            <span className="text-[9px] font-mono font-bold text-[#ff0050] uppercase tracking-[0.4em]">Node_Active</span>
                                         </div>
                                     </div>
                                 </div>
                             </motion.div>
 
-                            {/* Right: Content & Title - Ultra Large Title */}
-                            <div className="flex flex-col text-left lg:pl-10">
+                            {/* Right: Content & Title */}
+                            <div className="flex flex-col">
                                 {/* Title with Signature Style */}
-                                <div className="relative mb-14">
-                                    <h2 className="text-6xl md:text-8xl lg:text-9xl font-black font-outfit text-white tracking-tighter leading-[0.85] uppercase">
+                                <div className="relative mb-10">
+                                    <h2 className="text-5xl md:text-7xl font-black font-outfit text-white tracking-tighter leading-none uppercase">
                                         System <br />
-                                        <span className="opacity-80 text-5xl md:text-7xl lg:text-8xl">Objective</span>
+                                        <span className="opacity-80 text-4xl md:text-6xl">Architecture</span>
                                     </h2>
-                                    <span className="absolute top-[35%] right-[0%] md:right-[5%] lg:right-[15%] font-signature text-6xl md:text-8xl lg:text-9xl text-[#ff0050] opacity-90 rotate-[-12deg] pointer-events-none drop-shadow-[0_0_30px_rgba(255,0,80,0.5)] z-20">
+                                    <span className="absolute top-[35%] right-[0px] md:right-[-20px] font-signature text-3xl md:text-5xl text-[#ff0050] opacity-90 rotate-[-12deg] pointer-events-none drop-shadow-lg">
                                         Technical
                                     </span>
                                 </div>
 
-                                {/* Bulleted List (Balanced) */}
-                                <div className="space-y-8">
+                                {/* Bulleted List (More compact) */}
+                                <div className="space-y-6">
                                     {[
                                         {
                                             icon: Zap,
                                             title: "Real-time Multiplayer",
-                                            desc: "Instant synchronization for phase timers and player lists across all clients using Supabase."
+                                            desc: "Supabase Realtime handles phase timers and syncs player lists."
                                         },
                                         {
                                             icon: Database,
                                             title: "PostgreSQL Core",
-                                            desc: "Robust relational database ensuring consistency for all persistent game data."
+                                            desc: "Reliable relational schemas for all persistent project metadata."
                                         },
                                         {
                                             icon: ShieldCheck,
                                             title: "Game Master",
-                                            desc: "Centralized authority layer managing loop logic and system-wide state."
+                                            desc: "Centralized logic engine for loop durations and dispute management."
                                         },
                                         {
                                             icon: Gamepad2,
-                                            title: "Immersive UI/UX",
-                                            desc: "High-performance glitch effects designed to evoke a sense of imminent danger."
+                                            title: "Cinematic Experience",
+                                            desc: "Glitch effects and utility styling for a premium immersive feel."
                                         }
                                     ].map((item, idx) => (
                                         <motion.div
@@ -309,22 +309,19 @@ export function AliceProjectDetails() {
                                             initial={{ opacity: 0, y: 15 }}
                                             whileInView={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                            className="flex items-start gap-6 group"
+                                            className="flex items-start gap-5 group"
                                         >
-                                            <div className="mt-1.5 flex-shrink-0">
-                                                <div className="relative">
-                                                    <div className="w-6 h-6 rounded-full border-2 border-[#ff0050] flex items-center justify-center p-0.5 group-hover:bg-[#ff0050] transition-all duration-300">
-                                                        <div className="w-1.5 h-1.5 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                                                    </div>
-                                                    <div className="absolute -inset-2 border border-[#ff0050]/20 rounded-full group-hover:scale-150 group-hover:opacity-0 transition-all duration-700" />
+                                            <div className="mt-1 flex-shrink-0">
+                                                <div className="w-4 h-4 rounded-full border border-[#ff0050] flex items-center justify-center p-0.5 group-hover:bg-[#ff0050] transition-colors duration-300">
+                                                    <div className="w-1 h-1 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                                 </div>
                                             </div>
                                             <div>
-                                                <h4 className="text-2xl md:text-3xl font-bold font-outfit text-white mb-2 uppercase tracking-widest flex items-center gap-3">
+                                                <h4 className="text-lg md:text-xl font-bold font-outfit text-white mb-1 uppercase tracking-widest flex items-center gap-2">
                                                     {item.title}
-                                                    <item.icon size={18} className="text-[#ff0050] opacity-30 group-hover:opacity-100 transition-opacity" />
+                                                    <item.icon size={14} className="text-[#ff0050] opacity-40 group-hover:opacity-100 transition-opacity" />
                                                 </h4>
-                                                <p className="text-zinc-500 text-base md:text-lg font-light font-sans max-w-lg leading-relaxed group-hover:text-zinc-300 transition-colors">
+                                                <p className="text-zinc-500 text-xs md:text-sm font-light font-sans max-w-sm leading-relaxed group-hover:text-zinc-400 transition-colors">
                                                     {item.desc}
                                                 </p>
                                             </div>

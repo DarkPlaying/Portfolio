@@ -66,19 +66,20 @@ export function OtherProjects() {
 
             <div className="container mx-auto px-6 md:px-12 relative z-10 max-w-7xl">
 
-                {/* Career Objective & Contact (Mini) */}
-                <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-24 opacity-60">
-                    <div className="max-w-xl">
-                        <h4 className="text-[10px] font-mono text-yellow-accent uppercase tracking-[0.5em] mb-4">System_Objective</h4>
-                        <p className="text-zinc-400 text-xs font-mono leading-relaxed uppercase tracking-wider italic">
+                {/* Career Objective & Contact (Refined) */}
+                <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-20 opacity-90">
+                    <div className="max-w-2xl">
+                        <h4 className="text-[11px] font-mono text-yellow-accent uppercase tracking-[0.5em] mb-5">System_Objective</h4>
+                        <p className="text-white text-base md:text-lg lg:text-xl font-outfit font-light leading-relaxed uppercase tracking-tight">
                             Aspiring Computer Science student with practical experience in web development, programming, and cybersecurity.
-                            Passionate about building AI-driven systems and secure digital platforms. Eager to contribute and grow in a dynamic tech environment.
+                            Passionate about building <span className="text-yellow-accent font-bold">AI-driven systems</span> and secure digital platforms.
+                            Eager to contribute and grow in a dynamic tech environment.
                         </p>
                     </div>
-                    <div className="text-right flex flex-col items-end gap-2 font-mono text-[9px] uppercase tracking-widest text-zinc-500">
-                        <span>Puzhal, chennai-600006</span>
-                        <span>sanjaymofficialmail@gmail.com</span>
-                        <span className="text-yellow-accent">+91 8438509355</span>
+                    <div className="text-right flex flex-col items-end gap-3 font-mono text-[10px] md:text-xs uppercase tracking-[0.15em] text-zinc-500">
+                        <span className="hover:text-white transition-colors">Puzhal, chennai-600006</span>
+                        <a href="mailto:sanjaymofficialmail@gmail.com" className="hover:text-yellow-accent transition-colors underline decoration-yellow-accent/20">sanjaymofficialmail@gmail.com</a>
+                        <span className="text-yellow-accent font-bold tracking-[0.2em]">+91 8438509355</span>
                     </div>
                 </div>
 
