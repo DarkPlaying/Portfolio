@@ -1,324 +1,270 @@
-import { useState, useEffect, useRef } from 'react';
-import { ExternalLink, ShieldAlert, Code2, Award, Terminal, Database, Smartphone } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ExternalLink, ShieldAlert, Code2, Award, Terminal, Database, Smartphone, GraduationCap, Briefcase, Trophy, Globe, Lock } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export function OtherProjects() {
-    const [mouseGradientStyle, setMouseGradientStyle] = useState({
-        left: '0px',
-        top: '0px',
-        opacity: 0,
-    });
-    const [ripples, setRipples] = useState<{ id: number; x: number; y: number }[]>([]);
-    const [scrolled, setScrolled] = useState(false);
-    const floatingElementsRef = useRef<HTMLDivElement[]>([]);
-
-    useEffect(() => {
-        const animateWords = () => {
-            const wordElements = document.querySelectorAll('.word-animate');
-            wordElements.forEach(word => {
-                const delayStr = word.getAttribute('data-delay');
-                const delay = delayStr ? parseInt(delayStr) : 0;
-                setTimeout(() => {
-                    if (word instanceof HTMLElement) word.style.animation = 'word-appear 0.8s ease-out forwards';
-                }, delay);
-            });
-        };
-        const timeoutId = setTimeout(animateWords, 500);
-        return () => clearTimeout(timeoutId);
-    }, []);
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
-            setMouseGradientStyle({
-                left: `${e.clientX}px`,
-                top: `${e.clientY}px`,
-                opacity: 1,
-            });
+            setMousePosition({ x: e.clientX, y: e.clientY });
         };
-        const handleMouseLeave = () => {
-            setMouseGradientStyle(prev => ({ ...prev, opacity: 0 }));
-        };
-        document.addEventListener('mousemove', handleMouseMove);
-        document.addEventListener('mouseleave', handleMouseLeave);
-        return () => {
-            document.removeEventListener('mousemove', handleMouseMove);
-            document.removeEventListener('mouseleave', handleMouseLeave);
-        };
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => window.removeEventListener('mousemove', handleMouseMove);
     }, []);
-
-    useEffect(() => {
-        const handleClick = (e: MouseEvent) => {
-            const newRipple = { id: Date.now(), x: e.clientX, y: e.clientY };
-            setRipples(prev => [...prev, newRipple]);
-            setTimeout(() => setRipples(prev => prev.filter(r => r.id !== newRipple.id)), 1000);
-        };
-        document.addEventListener('click', handleClick);
-        return () => document.removeEventListener('click', handleClick);
-    }, []);
-
-    useEffect(() => {
-        const wordElements = document.querySelectorAll('.word-animate');
-        const handleMouseEnter = (e: Event) => { if (e.target instanceof HTMLElement) e.target.style.textShadow = '0 0 20px rgba(255, 0, 80, 0.4)'; };
-        const handleMouseLeave = (e: Event) => { if (e.target instanceof HTMLElement) e.target.style.textShadow = 'none'; };
-        wordElements.forEach(word => {
-            word.addEventListener('mouseenter', handleMouseEnter);
-            word.addEventListener('mouseleave', handleMouseLeave);
-        });
-        return () => {
-            wordElements.forEach(word => {
-                if (word) {
-                    word.removeEventListener('mouseenter', handleMouseEnter);
-                    word.removeEventListener('mouseleave', handleMouseLeave);
-                }
-            });
-        };
-    }, []);
-
-    useEffect(() => {
-        const elements = document.querySelectorAll('.floating-element-animate');
-        floatingElementsRef.current = Array.from(elements) as HTMLDivElement[];
-        const handleScroll = () => {
-            if (!scrolled) {
-                setScrolled(true);
-                floatingElementsRef.current.forEach((el, index) => {
-                    setTimeout(() => {
-                        if (el) {
-                            el.style.animationPlayState = 'running';
-                            el.style.opacity = '';
-                        }
-                    }, (parseFloat(el.style.animationDelay || "0") * 1000) + index * 100);
-                });
-            }
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [scrolled]);
 
     const pageStyles = `
-    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;700;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;700;900&family=Yellowtail&display=swap');
     
     .font-bebas { font-family: 'Bebas Neue', cursive; }
     .font-outfit { font-family: 'Outfit', sans-serif; }
+    .font-signature { font-family: 'Yellowtail', cursive; }
 
-    #mouse-gradient-other {
-      position: fixed;
-      pointer-events: none;
-      border-radius: 9999px;
-      background-image: radial-gradient(circle, rgba(255, 0, 80, 0.1), rgba(255, 0, 80, 0.05), transparent 70%);
-      transform: translate(-50%, -50%);
-      will-change: left, top, opacity;
-      transition: left 70ms linear, top 70ms linear, opacity 300ms ease-out;
-      z-index: 100;
+    .text-yellow-accent { color: #FFB800; }
+    .bg-yellow-accent { background-color: #FFB800; }
+    .border-yellow-accent { border-color: #FFB800; }
+    
+    .grid-bg {
+        background-image: 
+            linear-gradient(to right, rgba(255, 184, 0, 0.05) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 184, 0, 0.05) 1px, transparent 1px);
+        background-size: 50px 50px;
     }
-    @keyframes word-appear { 0% { opacity: 0; transform: translateY(30px) scale(0.8); filter: blur(10px); } 50% { opacity: 0.8; transform: translateY(10px) scale(0.95); filter: blur(2px); } 100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); } }
-    @keyframes grid-draw-red { 0% { stroke-dashoffset: 1000; opacity: 0; } 50% { opacity: 0.3; } 100% { stroke-dashoffset: 0; opacity: 0.15; } }
-    @keyframes pulse-glow-red { 0%, 100% { opacity: 0.2; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.1); } }
-    
-    .word-animate { display: inline-block; opacity: 0; margin: 0 0.1em; transition: color 0.3s ease, transform 0.3s ease; }
-    .word-animate:hover { color: #ff0050; transform: translateY(-2px); }
-    
-    .grid-line-red { stroke: #ff0050; stroke-width: 0.5; opacity: 0; stroke-dasharray: 5 5; stroke-dashoffset: 1000; animation: grid-draw-red 3s ease-out forwards; }
-    .detail-dot-red { fill: #ff0050; opacity: 0; animation: pulse-glow-red 3s ease-in-out infinite; }
-    
-    .floating-element-animate { position: absolute; width: 2px; height: 2px; background: #ff0050; border-radius: 50%; opacity: 0; animation: float-red 4s ease-in-out infinite; animation-play-state: paused; }
-    @keyframes float-red { 0%, 100% { transform: translateY(0) translateX(0); opacity: 0.2; } 25% { transform: translateY(-10px) translateX(5px); opacity: 0.6; } 50% { transform: translateY(-5px) translateX(-3px); opacity: 0.4; } 75% { transform: translateY(-15px) translateX(7px); opacity: 0.8; } }
-    
-    .ripple-effect-red { position: fixed; width: 4px; height: 4px; background: rgba(255, 0, 80, 0.6); border-radius: 50%; transform: translate(-50%, -50%); pointer-events: none; animation: pulse-glow-red 1s ease-out forwards; z-index: 9999; }
 
-    /* Scanline Effect */
-    @keyframes scanline { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
-    .scanline-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, rgba(255, 0, 80, 0.03), transparent); height: 100px; animation: scanline 8s linear infinite; pointer-events: none; z-index: 50; }
-    
-    /* Decryption Bar */
-    @keyframes decrypt { 0% { width: 0%; opacity: 0; } 5% { opacity: 1; } 100% { width: 100%; opacity: 1; } }
-    .decrypt-bar { height: 2px; background: #ff0050; box-shadow: 0 0 10px #ff0050; animation: decrypt 3s ease-out infinite; }
-
-    /* Glitch Animation */
-    @keyframes glitch {
-      0% { transform: translate(0); text-shadow: none; }
-      20% { transform: translate(-2px, 2px); text-shadow: 2px 0 #ff0050, -2px 0 #00ffff; }
-      40% { transform: translate(-2px, -2px); text-shadow: -2px 0 #ff0050, 2px 0 #00ffff; }
-      60% { transform: translate(2px, 2px); text-shadow: 2px 0 #ff0050, -2px 0 #00ffff; }
-      80% { transform: translate(2px, -2px); text-shadow: -2px 0 #ff0050, 2px 0 #00ffff; }
-      100% { transform: translate(0); text-shadow: none; }
+    .numbered-block::before {
+        content: attr(data-number);
+        position: absolute;
+        top: -20px;
+        left: -10px;
+        font-family: 'Bebas Neue', cursive;
+        font-size: 120px;
+        color: rgba(255, 255, 255, 0.03);
+        z-index: 0;
+        line-height: 1;
     }
-    .glitch-hover:hover .word-animate { animation: glitch 0.3s cubic-bezier(.25,.46,.45,.94) both infinite !important; }
-  `;
+
+    @keyframes drift {
+        0%, 100% { transform: translate(0, 0); }
+        50% { transform: translate(10px, 10px); }
+    }
+    `;
 
     return (
-        <section id="other-projects" className="py-32 bg-[#050505] relative z-10 overflow-hidden border-t border-white/[0.05]">
+        <section id="other-projects" className="py-32 bg-black relative z-10 overflow-hidden border-t border-white/[0.05]">
             <style>{pageStyles}</style>
 
-            {/* Holographic Overlays */}
-            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03] pointer-events-none mix-blend-overlay"></div>
-            <div className="scanline-overlay"></div>
+            {/* Background Grid */}
+            <div className="absolute inset-0 grid-bg pointer-events-none opacity-40"></div>
 
-            {/* Neon Red Grid System */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <defs>
-                    <pattern id="gridAlice" width="100" height="100" patternUnits="userSpaceOnUse">
-                        <path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255, 0, 80, 0.05)" strokeWidth="0.5" />
-                    </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#gridAlice)" />
-                <line x1="0" y1="25%" x2="100%" y2="25%" className="grid-line-red" style={{ animationDelay: '0.5s' }} />
-                <line x1="0" y1="75%" x2="100%" y2="75%" className="grid-line-red" style={{ animationDelay: '1s' }} />
-                <line x1="15%" y1="0" x2="15%" y2="100%" className="grid-line-red" style={{ animationDelay: '1.5s' }} />
-                <line x1="85%" y1="0" x2="85%" y2="100%" className="grid-line-red" style={{ animationDelay: '2s' }} />
+            {/* Mouse Glow */}
+            <div
+                className="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300"
+                style={{
+                    background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 184, 0, 0.05), transparent 80%)`,
+                }}
+            />
 
-                <circle cx="15%" cy="25%" r="2" className="detail-dot-red" style={{ animationDelay: '3s' }} />
-                <circle cx="85%" cy="25%" r="2" className="detail-dot-red" style={{ animationDelay: '3.2s' }} />
-                <circle cx="15%" cy="75%" r="2" className="detail-dot-red" style={{ animationDelay: '3.4s' }} />
-                <circle cx="85%" cy="75%" r="2" className="detail-dot-red" style={{ animationDelay: '3.6s' }} />
-            </svg>
+            <div className="container mx-auto px-6 md:px-12 relative z-10 max-w-7xl">
 
-            {/* Floating Particles */}
-            <div className="floating-element-animate" style={{ top: '20%', left: '10%', animationDelay: '0.2s' }}></div>
-            <div className="floating-element-animate" style={{ top: '70%', left: '80%', animationDelay: '0.8s' }}></div>
-            <div className="floating-element-animate" style={{ top: '40%', left: '5%', animationDelay: '1.2s' }}></div>
-
-            <div className="max-w-[100rem] mx-auto px-6 md:px-12 relative z-10">
-
-                {/* Animated Header */}
-                <div className="text-center mb-20 md:mb-32 group/header glitch-hover">
-                    <h2 className="text-4xl md:text-8xl font-black font-bebas text-white tracking-[0.05em] uppercase mb-4 leading-none inline-flex flex-wrap justify-center gap-x-4 md:gap-x-8 relative">
-                        <span className="word-animate" data-delay="100">Hidden</span>
-                        <span className="word-animate text-transparent bg-clip-text bg-gradient-to-b from-[#ff0050] to-[#ff0050]/40 drop-shadow-[0_0_30px_rgba(255,0,80,0.5)]" data-delay="300">Archives</span>
-                    </h2>
-                    <div className="mt-8 w-32 h-[1px] bg-gradient-to-r from-transparent via-[#ff0050] to-transparent opacity-50 mx-auto relative">
-                        <div className="absolute top-0 left-0 h-full w-full bg-[#ff0050] blur-[2px] opacity-30 animate-pulse"></div>
+                {/* Career Objective & Contact (Mini) */}
+                <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-24 opacity-60">
+                    <div className="max-w-xl">
+                        <h4 className="text-[10px] font-mono text-yellow-accent uppercase tracking-[0.5em] mb-4">System_Objective</h4>
+                        <p className="text-zinc-400 text-xs font-mono leading-relaxed uppercase tracking-wider italic">
+                            Aspiring Computer Science student with practical experience in web development, programming, and cybersecurity.
+                            Passionate about building AI-driven systems and secure digital platforms. Eager to contribute and grow in a dynamic tech environment.
+                        </p>
                     </div>
-                    <p className="mt-8 text-zinc-500 font-mono text-[10px] uppercase tracking-[0.8em] opacity-60">
-                        <span className="word-animate" data-delay="600">Accessing</span>
-                        <span className="word-animate" data-delay="800">system</span>
-                        <span className="word-animate" data-delay="1000">repository</span>
-                    </p>
+                    <div className="text-right flex flex-col items-end gap-2 font-mono text-[9px] uppercase tracking-widest text-zinc-500">
+                        <span>Puzhal, chennai-600006</span>
+                        <span>sanjaymofficialmail@gmail.com</span>
+                        <span className="text-yellow-accent">+91 8438509355</span>
+                    </div>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                {/* Header Style from Image */}
+                <div className="relative mb-32 text-center">
+                    <h2 className="text-7xl md:text-9xl font-bebas text-white tracking-tight leading-none uppercase select-none">
+                        Skills & <span className="opacity-80">Tools</span>
+                    </h2>
+                    <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-signature text-4xl md:text-7xl text-yellow-accent opacity-90 rotate-[-5deg] pointer-events-none drop-shadow-xl">
+                        Signature
+                    </span>
+                    <div className="flex items-center justify-center gap-4 mt-8">
+                        <div className="h-px w-12 bg-yellow-accent/40" />
+                        <span className="text-[10px] font-mono font-bold text-yellow-accent uppercase tracking-[0.8em]">Archive_Node_01</span>
+                        <div className="h-px w-12 bg-yellow-accent/40" />
+                    </div>
+                </div>
 
-                    {/* WEB APPS BENTO */}
-                    <div className="lg:col-span-7 bg-black/60 backdrop-blur-3xl border border-white/[0.08] border-t-[#ff0050]/40 rounded-[2.5rem] p-8 md:p-14 group relative overflow-hidden shadow-[0_-10px_40px_rgba(255,0,80,0.05)] transition-transform duration-500 hover:scale-[1.01] hover:border-[#ff0050]/20">
-                        <div className="absolute top-0 left-0 w-full overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity">
-                            <div className="decrypt-bar"></div>
-                            <span className="absolute top-2 left-4 text-[8px] font-mono text-[#ff0050] uppercase tracking-[0.3em] animate-pulse">DECRYPTING_REPOSITORY...</span>
-                        </div>
-                        <div className="absolute top-0 right-0 p-12 opacity-[0.03] scale-[2] rotate-12 group-hover:rotate-0 transition-transform duration-1000 select-none pointer-events-none">
-                            <Database size={200} className="text-[#ff0050]" />
-                        </div>
-                        <div className="absolute bottom-0 left-0 p-8 opacity-[0.02] pointer-events-none">
-                            <Code2 size={120} className="text-white" />
-                        </div>
+                {/* Main 4-Block Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 mb-32">
 
-                        <div className="flex items-center gap-4 mb-10 md:mb-14 relative z-10">
-                            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#ff0050]/10 border border-[#ff0050]/20 flex items-center justify-center text-[#ff0050] shadow-[0_0_15px_rgba(255,0,80,0.2)]">
-                                <Code2 size={24} />
+                    {/* 01: EDUCATION */}
+                    <div className="relative p-8 group border-L-2 border-yellow-accent/20 hover:border-yellow-accent transition-all duration-500 overflow-hidden">
+                        <span className="text-8xl font-bebas text-white/5 absolute -top-4 -right-2">01</span>
+                        <div className="flex items-center gap-4 mb-8">
+                            <GraduationCap className="text-yellow-accent" size={32} />
+                            <h3 className="text-2xl font-bold font-outfit text-white uppercase tracking-widest">Education</h3>
+                        </div>
+                        <div className="space-y-8 relative z-10">
+                            <div>
+                                <h4 className="text-sm font-bold font-mono text-yellow-accent uppercase mb-2 tracking-widest">B.Sc Computer Science</h4>
+                                <p className="text-zinc-400 text-sm font-light leading-relaxed">Vel Tech Ranga Sanku Arts College</p>
+                                <p className="text-white text-xs font-mono font-bold mt-1">CGPA: 9.1 (Till 5 Semester)</p>
                             </div>
-                            <h4 className="text-2xl md:text-3xl font-black font-bebas text-white uppercase tracking-widest">Web Systems</h4>
+                            <div>
+                                <h4 className="text-sm font-bold font-mono text-zinc-400 uppercase mb-2 tracking-widest leading-none">High School</h4>
+                                <p className="text-zinc-500 text-sm font-light leading-relaxed">Dr. Sivanthi Adithanar Matriculation School</p>
+                                <p className="text-zinc-500 text-[10px] font-mono font-bold mt-1 uppercase">12th Score: 78% | Computer Science: 99/100</p>
+                            </div>
                         </div>
+                    </div>
 
-                        <div className="space-y-10 relative z-10">
+                    {/* 02: SKILLS */}
+                    <div className="relative p-8 group border-L-2 border-yellow-accent/20 hover:border-yellow-accent transition-all duration-500 overflow-hidden">
+                        <span className="text-8xl font-bebas text-white/5 absolute -top-4 -right-2">02</span>
+                        <div className="flex items-center gap-4 mb-8">
+                            <Code2 className="text-yellow-accent" size={32} />
+                            <h3 className="text-2xl font-bold font-outfit text-white uppercase tracking-widest">Technical Arsenal</h3>
+                        </div>
+                        <div className="grid grid-cols-1 gap-6 relative z-10">
                             {[
-                                { name: "Education", title: "AI Education Hub", link: "https://Educationfyp.vercel.app" },
-                                { name: "Alice", title: "Gaming State Engine", link: "https://Alice14.vercel.app" },
-                                { name: "Ignixion", title: "Event Routing App", link: "https://Ignixion.vercel.app" }
-                            ].map((item, idx) => (
-                                <a key={idx} href={item.link} target="_blank" rel="noreferrer" className="block group/item">
-                                    <div className="flex justify-between items-center mb-2">
-                                        <h5 className="text-xl font-bold font-outfit text-white group-hover/item:text-[#ff0050] transition-colors uppercase">{item.title}</h5>
-                                        <ExternalLink size={16} className="text-zinc-600" />
-                                    </div>
-                                    <div className="h-[1px] w-full bg-white/[0.05] group-hover:bg-[#ff0050]/20 transition-colors" />
-                                </a>
+                                { label: 'Languages', items: 'C, C++, Java, Python' },
+                                { label: 'Web Tech', items: 'HTML, CSS, JavaScript, Tailwind, React' },
+                                { label: 'Design & Tools', items: 'UI/UX, Video Editing, Webflow, Flutterflow' },
+                                { label: 'Databases', items: 'SQL, SQLite' },
+                                { label: 'Cybersecurity', items: 'Pen-Testing, CTFs, Bug Hunting' }
+                            ].map((skill, idx) => (
+                                <div key={idx}>
+                                    <h4 className="text-[10px] font-mono font-bold text-zinc-500 uppercase mb-2 tracking-widest">{skill.label}</h4>
+                                    <p className="text-zinc-300 text-sm font-light tracking-wide">{skill.items}</p>
+                                </div>
                             ))}
                         </div>
                     </div>
 
-                    {/* SECURITY OPS */}
-                    <div className="lg:col-span-5 bg-black/60 backdrop-blur-3xl border border-white/[0.08] border-t-[#ff0050]/40 rounded-[2.5rem] p-10 group relative overflow-hidden shadow-[0_-10px_40px_rgba(255,0,80,0.05)] transition-transform duration-500 hover:scale-[1.01] hover:border-[#ff0050]/20">
-                        <div className="absolute top-0 left-0 w-full overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity">
-                            <div className="decrypt-bar"></div>
-                            <span className="absolute top-2 left-4 text-[8px] font-mono text-[#ff0050] uppercase tracking-[0.3em] animate-pulse">SCANNING_VULNERABILITIES...</span>
+                    {/* 03: ACHIEVEMENTS & INTERNSHIP */}
+                    <div className="relative p-8 group border-L-2 border-yellow-accent/20 hover:border-yellow-accent transition-all duration-500 overflow-hidden">
+                        <span className="text-8xl font-bebas text-white/5 absolute -top-4 -right-2">03</span>
+                        <div className="flex items-center gap-4 mb-8">
+                            <Trophy className="text-yellow-accent" size={32} />
+                            <h3 className="text-2xl font-bold font-outfit text-white uppercase tracking-widest">Milestones</h3>
                         </div>
-                        <div className="absolute -bottom-10 -right-10 p-12 opacity-[0.03] scale-150 -rotate-12 group-hover:rotate-0 transition-transform duration-1000 select-none pointer-events-none">
-                            <ShieldAlert size={150} className="text-white" />
-                        </div>
-                        <div className="flex items-center gap-4 mb-8 md:mb-10 relative z-10">
-                            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#ff0050]/10 border border-[#ff0050]/20 flex items-center justify-center text-[#ff0050] shadow-[0_0_15px_rgba(255,0,80,0.2)]">
-                                <Terminal size={24} />
-                            </div>
-                            <h4 className="text-2xl md:text-3xl font-black font-bebas text-white uppercase tracking-widest">Security Ops</h4>
-                        </div>
-
-                        <div className="space-y-12 relative z-10">
+                        <div className="space-y-8 relative z-10">
                             <div>
-                                <h5 className="text-sm font-bold font-mono text-zinc-500 uppercase mb-2 tracking-widest">Ahold Delhaize</h5>
-                                <p className="text-zinc-300 font-light border-l-2 border-[#ff0050]/40 pl-4 italic">Credit data leakage exposure.</p>
+                                <h4 className="flex items-center gap-2 text-sm font-bold font-mono text-yellow-accent uppercase mb-3 tracking-widest">
+                                    <Briefcase size={14} /> Internship
+                                </h4>
+                                <p className="text-zinc-400 text-xs font-light leading-relaxed italic">
+                                    Web Development Intern – Gained hands-on experience in front-end development, crafting responsive,
+                                    user-friendly interfaces and collaborating on intuitive UI design improvements.
+                                </p>
                             </div>
-                            <div>
-                                <h5 className="text-sm font-bold font-mono text-zinc-500 uppercase mb-2 tracking-widest">ManageEngine</h5>
-                                <p className="text-zinc-300 font-light border-l-2 border-[#ff0050]/40 pl-4 italic">Production JS library vulnerability.</p>
+                            <div className="space-y-4">
+                                <h4 className="text-[10px] font-mono font-bold text-zinc-500 uppercase tracking-widest">Key Accomplishments</h4>
+                                <ul className="space-y-2 text-zinc-300 text-sm font-light">
+                                    <li className="flex items-start gap-2">• State-Level Chess Winner – Peri College</li>
+                                    <li className="flex items-start gap-2">• Active participant in CTF games & Hack The Box labs</li>
+                                </ul>
+                            </div>
+                            <div className="space-y-2">
+                                <h4 className="text-[10px] font-mono font-bold text-zinc-500 uppercase tracking-widest">Certifications</h4>
+                                <div className="text-xs text-zinc-400 space-x-4">
+                                    <span className="border-b border-white/10 pb-1">Mastering C Programming (Udemy)</span>
+                                    <span className="border-b border-white/10 pb-1">Cybersecurity (Cisco)</span>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* UX & ACHIEVEMENTS SMALL BENTOS */}
-                    <div className="lg:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {/* Achievements */}
-                        <div className="bg-black/60 backdrop-blur-3xl border border-white/[0.08] border-t-[#ff0050]/40 rounded-[2.5rem] p-10 flex flex-col items-center text-center group relative overflow-hidden shadow-[0_-10px_40px_rgba(255,0,80,0.05)] transition-transform duration-500 hover:scale-[1.01] hover:border-[#ff0050]/20">
-                            <div className="absolute top-0 left-0 w-full overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity">
-                                <div className="decrypt-bar"></div>
-                                <span className="absolute top-2 left-4 text-[8px] font-mono text-[#ff0050] uppercase tracking-[0.3em] animate-pulse">VERIFYING_CREDENTIALS...</span>
-                            </div>
-                            <div className="w-14 h-14 rounded-2xl bg-[#ff0050]/10 border border-[#ff0050]/20 flex items-center justify-center text-[#ff0050] mb-6 group-hover:shadow-[0_0_20px_rgba(255,0,80,0.3)] transition-shadow">
-                                <Award size={28} />
-                            </div>
-                            <h4 className="text-2xl font-black font-bebas text-white uppercase tracking-widest mb-4">Core Achievements</h4>
-                            <p className="text-zinc-500 text-xs font-light leading-relaxed max-w-[200px]">Pen-testing, CTF Laboratory, and Voice AI modules.</p>
+                    {/* 04: PROJECTS ARCHIVE */}
+                    <div className="relative p-8 group border-L-2 border-yellow-accent/20 hover:border-yellow-accent transition-all duration-500 overflow-hidden">
+                        <span className="text-8xl font-bebas text-white/5 absolute -top-4 -right-2">04</span>
+                        <div className="flex items-center gap-4 mb-8">
+                            <Lock className="text-yellow-accent" size={32} />
+                            <h3 className="text-2xl font-bold font-outfit text-white uppercase tracking-widest">Project Vault</h3>
                         </div>
+                        <div className="space-y-6 relative z-10">
+                            <h4 className="text-[10px] font-mono font-bold text-zinc-500 uppercase tracking-widest">Vibe Coding Projects</h4>
+                            <div className="grid grid-cols-1 gap-4">
+                                {[
+                                    { name: 'Educationfyp', url: 'Educationfyp.vercel.app', desc: 'AI-driven education platform powered by Firebase.' },
+                                    { name: 'Alice14', url: 'Alice14.vercel.app', desc: 'Dynamic gaming platform with real-time features.' },
+                                    { name: 'Ignixion', url: 'Ignixion.vervel.app', desc: 'Modern event website with intelligent redirection.' },
+                                    { name: 'Cyber25', url: 'Cyber25.vercel.app', desc: 'Cybersecurity CTF platform featuring labs.' }
+                                ].map((proj, idx) => (
+                                    <a key={idx} href={`https://${proj.url}`} target="_blank" rel="noreferrer" className="block group/item border border-white/5 p-3 rounded-lg hover:bg-white/5 transition-all">
+                                        <div className="flex justify-between items-center mb-1">
+                                            <span className="text-white font-bold text-xs uppercase tracking-widest group-hover/item:text-yellow-accent transition-colors">{proj.name}</span>
+                                            <ExternalLink size={12} className="text-zinc-600" />
+                                        </div>
+                                        <p className="text-[10px] text-zinc-500 italic">{proj.desc}</p>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
 
-                        {/* UI/UX App 1 */}
-                        <a href="https://app.spline.design/file/168b935a-380c-4386-a6a4-41db5722f999" target="_blank" rel="noreferrer" className="bg-black/60 backdrop-blur-3xl border border-white/[0.08] border-t-zinc-800 rounded-[2.5rem] p-10 flex flex-col items-center text-center group relative overflow-hidden hover:border-t-[#ff0050]/40 transition-all duration-500 hover:scale-[1.01] shadow-xl">
-                            <div className="absolute top-0 left-0 w-full overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity">
-                                <div className="decrypt-bar"></div>
+                </div>
+
+                {/* Additional Content: Cybersecurity Disclosures & UI/UX Links */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 pt-16 border-t border-white/5">
+
+                    {/* Cybersecurity Disclosures */}
+                    <div className="bg-zinc-950/40 border border-white/5 p-8 rounded-3xl relative overflow-hidden group">
+                        <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform duration-700">
+                            <ShieldAlert size={80} className="text-yellow-accent" />
+                        </div>
+                        <h4 className="text-sm font-black font-bebas text-white uppercase tracking-[0.2em] mb-8 flex items-center gap-3">
+                            <span className="w-8 h-px bg-yellow-accent" />
+                            Cybersecurity Disclosures
+                        </h4>
+                        <div className="space-y-6">
+                            <div className="border-l border-yellow-accent/40 pl-6">
+                                <h5 className="text-[10px] font-mono font-bold text-yellow-accent uppercase mb-1">Ahold Delhaize</h5>
+                                <p className="text-zinc-500 text-xs font-light italic">Found exposed credit card details in site source code.</p>
                             </div>
-                            <div className="w-14 h-14 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-zinc-400 group-hover:text-[#ff0050] mb-6 transition-all group-hover:bg-[#ff0050]/10 group-hover:border-[#ff0050]/20">
-                                <Smartphone size={28} />
+                            <div className="border-l border-yellow-accent/40 pl-6">
+                                <h5 className="text-[10px] font-mono font-bold text-yellow-accent uppercase mb-1">ManageEngine</h5>
+                                <p className="text-zinc-500 text-xs font-light italic">Reported outdated jQuery in production environment.</p>
                             </div>
-                            <h4 className="text-2xl font-black font-bebas text-white uppercase tracking-widest mb-4">AI Voice UI</h4>
-                            <p className="text-zinc-500 text-xs font-light leading-relaxed max-w-[200px]">Interactive 3D controls via Spline. [Preview Available]</p>
+                        </div>
+                    </div>
+
+                    {/* UI/UX & Voice System */}
+                    <div className="flex flex-col gap-6">
+                        <a href="https://app.spline.design/file/168b935a-380c-4386-a6a4-41db5722f999" target="_blank" rel="noreferrer"
+                            className="flex-1 bg-zinc-950/40 border border-white/5 p-8 rounded-3xl hover:border-yellow-accent/30 transition-all group flex flex-col justify-center">
+                            <div className="flex items-center gap-4 mb-3">
+                                <Smartphone className="text-zinc-500 group-hover:text-yellow-accent transition-colors" size={20} />
+                                <h4 className="text-sm font-bold text-white uppercase tracking-widest">AI Voice-Controlled System</h4>
+                            </div>
+                            <p className="text-zinc-500 text-[10px] font-light leading-relaxed max-w-sm">
+                                Built an intelligent assistant with voice command capabilities to automate tasks and control system functions via Spline.
+                            </p>
                         </a>
-
-                        {/* UI/UX App 2 */}
-                        <a href="https://app.flutterflow.io/preview/recipe2-wrkboz?WelcomePage" target="_blank" rel="noreferrer" className="bg-black/60 backdrop-blur-3xl border border-white/[0.08] border-t-zinc-800 rounded-[2.5rem] p-10 flex flex-col items-center text-center group relative overflow-hidden hover:border-t-[#ff0050]/40 transition-all duration-500 shadow-xl">
-                            <div className="w-14 h-14 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-zinc-400 group-hover:text-[#ff0050] mb-6 transition-all group-hover:bg-[#ff0050]/10 group-hover:border-[#ff0050]/20">
-                                <Code2 size={28} />
+                        <a href="https://app.flutterflow.io/preview/recipe2-wrkboz?WelcomePage" target="_blank" rel="noreferrer"
+                            className="flex-1 bg-zinc-950/40 border border-white/5 p-8 rounded-3xl hover:border-yellow-accent/30 transition-all group flex flex-col justify-center">
+                            <div className="flex items-center gap-4 mb-3">
+                                <Globe className="text-zinc-500 group-hover:text-yellow-accent transition-colors" size={20} />
+                                <h4 className="text-sm font-bold text-white uppercase tracking-widest">Culinary UI/UX Project</h4>
                             </div>
-                            <h4 className="text-2xl font-black font-bebas text-white uppercase tracking-widest mb-4">Culinary App</h4>
-                            <p className="text-zinc-500 text-xs font-light leading-relaxed max-w-[200px]">Modern UX/UI developed in FlutterFlow. [Preview Available]</p>
+                            <p className="text-zinc-500 text-[10px] font-light leading-relaxed max-w-sm">
+                                Modern recipe management ecosystem developed in FlutterFlow with advanced user journeys.
+                            </p>
                         </a>
                     </div>
+
+                </div>
+
+                {/* Footer Signature */}
+                <div className="mt-32 text-center opacity-20 hover:opacity-100 transition-opacity duration-1000">
+                    <span className="font-signature text-6xl md:text-8xl text-zinc-800 pointer-events-none select-none">
+                        Sanjay.M
+                    </span>
                 </div>
             </div>
-
-            {/* Neon Red Mouse Gradient */}
-            <div
-                id="mouse-gradient-other"
-                className="w-80 h-80 blur-[80px]"
-                style={{
-                    left: mouseGradientStyle.left,
-                    top: mouseGradientStyle.top,
-                    opacity: mouseGradientStyle.opacity,
-                }}
-            ></div>
-
-            {/* Ripple Effects */}
-            {ripples.map(ripple => (
-                <div
-                    key={ripple.id}
-                    className="ripple-effect-red"
-                    style={{ left: `${ripple.x}px`, top: `${ripple.y}px` }}
-                ></div>
-            ))}
         </section>
     );
 }
