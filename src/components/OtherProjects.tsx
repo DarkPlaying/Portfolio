@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ExternalLink, ShieldAlert, Code2, Terminal, Database, Smartphone, GraduationCap, Briefcase, Trophy, Globe, Lock } from 'lucide-react';
+import { ExternalLink, ShieldAlert, Code2, Smartphone, GraduationCap, Briefcase, Trophy, Globe, Lock } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export function OtherProjects() {

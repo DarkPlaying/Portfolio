@@ -2,9 +2,8 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import {
     Zap, Database, ShieldCheck, Smartphone,
-    Terminal, Spade, Diamond, Club, Heart
+    Spade, Diamond, Club, Heart
 } from "lucide-react";
-import { resumeData } from '../data/resume';
 
 const rules = [
     {
@@ -82,7 +81,6 @@ export function AliceProjectDetails() {
 
     // Enhanced Parallax for System Objective
     const projectImageY = useTransform(scrollYProgress, [0.3, 0.8], [60, -60]);
-    const projectTextY = useTransform(scrollYProgress, [0.3, 0.8], [-40, 40]);
 
     return (
         <div className="min-h-screen bg-[#050505] text-white pt-32 pb-20 relative overflow-hidden font-sans">
