@@ -37,26 +37,26 @@ export function Loader({ children }: LoaderProps) {
                                 className="flex flex-col items-center"
                             >
                                 <h1
-                                    className="text-white text-10xl md:text-2xl tracking-[1em] font-light uppercase mb-1 ml-[1em]"
+                                    className="text-white text-3xl md:text-6xl tracking-[0.6em] font-medium uppercase mb-4 ml-[0.6em] drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
                                     style={{ fontFamily: "'Outfit', sans-serif" }}
                                 >
                                     Sanjay M
                                 </h1>
-                                <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#ff0050] to-transparent opacity-50" />
+                                <div className="h-[3px] w-32 bg-gradient-to-r from-transparent via-[#ff0050] to-transparent shadow-[0_0_20px_rgba(255,0,80,0.8)]" />
                             </motion.div>
 
-                            <div className="flex flex-col items-center gap-3">
-                                <span className="text-[9px] text-zinc-500 tracking-[0.5em] uppercase font-mono">
+                            <div className="flex flex-col items-center gap-6">
+                                <span className="text-xs text-zinc-400 tracking-[0.8em] uppercase font-mono">
                                     Developer Portfolio
                                 </span>
 
                                 {/* Professional progress bar */}
-                                <div className="h-[1px] w-32 bg-white/5 overflow-hidden relative">
+                                <div className="h-[3px] w-64 bg-white/10 overflow-hidden relative rounded-full">
                                     <motion.div
                                         initial={{ x: "-100%" }}
                                         animate={{ x: "100%" }}
                                         transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
-                                        className="h-full w-1/2 absolute bg-gradient-to-r from-transparent via-[#ff0050]/50 to-transparent"
+                                        className="h-full w-1/2 absolute bg-gradient-to-r from-transparent via-[#ff0050] to-transparent shadow-[0_0_25px_rgba(255,0,80,1)]"
                                     />
                                 </div>
                             </div>
