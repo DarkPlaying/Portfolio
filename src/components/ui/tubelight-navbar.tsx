@@ -58,7 +58,7 @@ export function NavBar({ items, className, activeTab: activeTabProp }: NavBarPro
                             href={item.url}
                             onClick={() => setActiveTab(item.name)}
                             className={cn(
-                                "relative cursor-pointer text-[10px] md:text-xs font-bold px-4 md:px-6 py-2 rounded-full transition-all duration-300 uppercase tracking-widest",
+                                "relative cursor-pointer text-[10px] md:text-xs font-bold px-3 md:px-5 py-2 rounded-full transition-all duration-300 uppercase tracking-wider",
                                 "text-white/50 hover:text-white",
                                 isActive && "text-[#ff0050]",
                             )}

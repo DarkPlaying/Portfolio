@@ -6,22 +6,30 @@ export function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('Home');
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 1024); // Consistency with lg:hidden
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
         };
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', checkMobile);
+        };
     }, []);
 
     const navLinks = useMemo(() => [
         { name: 'Home', url: '#home', icon: Home },
         { name: 'About', url: '#about', icon: User },
-        { name: 'Projects', url: '#projects', icon: Briefcase },
+        { name: 'Projects', url: isMobile ? '#projects-details' : '#projects', icon: Briefcase },
         { name: 'Testimonials', url: '#testimonials', icon: Star },
         { name: 'Contact', url: '#contact', icon: MessageSquare },
-    ], []);
+    ], [isMobile]);
 
     useEffect(() => {
         const handleScrollSpy = () => {
@@ -74,7 +82,7 @@ export function Navbar() {
             className={`fixed top-0 w-full z-[9999] transition-all duration-300 ${isScrolled ? 'bg-black/90 backdrop-blur-lg py-3 border-b border-white/5 shadow-2xl' : 'bg-transparent py-6'
                 }`}
         >
-            <div className="container mx-auto px-4 md:px-8 flex items-center justify-between gap-4 md:gap-8">
+            <div className="container mx-auto px-4 md:px-8 flex items-center justify-between gap-2 md:gap-8">
                 <a href="#home" className="flex items-center flex-shrink-0">
                     <span className="font-signature text-2xl md:text-3xl text-white opacity-90 rotate-[-5deg] drop-shadow-xl py-2">SANJAY M</span>
                 </a>
