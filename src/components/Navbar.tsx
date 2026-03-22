@@ -75,12 +75,12 @@ export function Navbar() {
                 }`}
         >
             <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
-                <a href="#home" className="text-2xl font-black font-outfit tracking-tighter text-white uppercase group flex items-center">
-                    <span className="absolute font-signature text-2xl  mt-5 md:text-3xl text-white opacity-90 rotate-[-5deg] pointer-events-none drop-shadow-xl">SANJAY M</span>
+                <a href="#home" className="flex items-center">
+                    <span className="font-signature text-2xl md:text-3xl text-white opacity-90 rotate-[-5deg] drop-shadow-xl py-2">SANJAY M</span>
                 </a>
 
-                {/* Tubelight Nav - Centered */}
-                <div className="hidden md:block">
+                {/* Tubelight Nav - Centered on Desktop */}
+                <div className="hidden md:block absolute left-1/2 -translate-x-1/2">
                     <NavBar items={navLinks} activeTab={activeSection} />
                 </div>
 
