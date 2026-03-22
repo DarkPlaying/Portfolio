@@ -76,7 +76,7 @@ export function AliceProjectDetails() {
     }, [isHovering]);
 
     return (
-        <div id="projects-details" className="min-h-screen bg-[#050505] text-white pt-20 md:pt-32 pb-20 relative overflow-hidden font-sans">
+        <div id="projects" className="min-h-screen bg-[#050505] text-white pt-20 md:pt-32 pb-20 relative overflow-hidden font-sans">
             <style>
                 {`
                 @import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Outfit:wght@400;700;900&family=Great+Vibes&family=DM+Serif+Display:ital@0;1&display=swap');

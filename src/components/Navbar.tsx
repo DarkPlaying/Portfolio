@@ -74,17 +74,17 @@ export function Navbar() {
             className={`fixed top-0 w-full z-[9999] transition-all duration-300 ${isScrolled ? 'bg-black/90 backdrop-blur-lg py-3 border-b border-white/5 shadow-2xl' : 'bg-transparent py-6'
                 }`}
         >
-            <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
-                <a href="#home" className="flex items-center">
+            <div className="container mx-auto px-4 md:px-8 flex items-center justify-between gap-4 md:gap-8">
+                <a href="#home" className="flex items-center flex-shrink-0">
                     <span className="font-signature text-2xl md:text-3xl text-white opacity-90 rotate-[-5deg] drop-shadow-xl py-2">SANJAY M</span>
                 </a>
 
-                {/* Tubelight Nav - Centered on Desktop */}
-                <div className="hidden md:block absolute left-1/2 -translate-x-1/2">
+                {/* Tubelight Nav - Flowing in Header on Desktop */}
+                <div className="hidden md:flex flex-grow justify-center">
                     <NavBar items={navLinks} activeTab={activeSection} />
                 </div>
 
-                <div className="hidden md:block">
+                <div className="hidden md:block flex-shrink-0">
                     <motion.a
                         animate={{
                             scale: [1, 1.05, 1],

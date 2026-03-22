@@ -43,7 +43,7 @@ export function NavBar({ items, className, activeTab: activeTabProp }: NavBarPro
     return (
         <div
             className={cn(
-                "fixed bottom-0 md:top-4 left-1/2 -translate-x-1/2 z-[100] mb-6 md:mb-0",
+                "fixed bottom-0 md:relative md:bottom-auto left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 z-[100] mb-6 md:mb-0",
                 className,
             )}
         >
