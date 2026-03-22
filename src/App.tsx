@@ -10,6 +10,7 @@ import { Footer } from './components/Footer';
 
 import { AboutMe } from './components/AboutMe';
 import { Loader } from './components/Loader';
+import { ScrollVideoPart2 } from './components/ScrollVideoPart2';
 
 function App() {
   useEffect(() => {
@@ -44,6 +45,10 @@ function App() {
           <Hero />
           <AboutMe />
           <OtherProjects />
+          {/* ScrollVideoPart2 - Only on Desktop */}
+          <div className="hidden md:block">
+            <ScrollVideoPart2 />
+          </div>
           <AliceProjectDetails />
           <TestimonialsSection />
           <Contact />
