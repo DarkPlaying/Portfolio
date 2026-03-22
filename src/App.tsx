@@ -45,8 +45,8 @@ function App() {
           <Hero />
           <AboutMe />
           <OtherProjects />
-          {/* ScrollVideoPart2 - Only on Desktop */}
-          <div className="hidden md:block">
+          {/* ScrollVideoPart2 - Only on Laptops */}
+          <div className="hidden lg:block">
             <ScrollVideoPart2 />
           </div>
           <AliceProjectDetails />

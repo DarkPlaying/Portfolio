@@ -37,16 +37,15 @@ export function Loader({ children }: LoaderProps) {
                                 className="flex flex-col items-center"
                             >
                                 <h1
-                                    className="text-white text-2xl md:text-5xl tracking-[0.6em] font-medium uppercase mb-4 ml-[0.6em] drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+                                    className="text-white text-2xl md:text-5xl tracking-[0.6em] font-medium uppercase mb-0 ml-[0.6em] drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
                                     style={{ fontFamily: "'Outfit', sans-serif" }}
                                 >
                                     Sanjay M
                                 </h1>
-                                <div className="h-[3px] w-40 bg-gradient-to-r from-transparent via-[#ff0050] to-transparent shadow-[0_0_20px_rgba(255,0,80,0.8)]" />
                             </motion.div>
 
                             <div className="flex flex-col items-center gap-6">
-                                <span className="text-xs text-zinc-400 tracking-[0.8em] uppercase font-mono">
+                                <span className="text-sm text-zinc-400 tracking-[0.8em] uppercase font-mono">
                                     Developer Portfolio
                                 </span>
 

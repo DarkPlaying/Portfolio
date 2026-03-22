@@ -23,7 +23,7 @@ export function Hero() {
     const visibility = useTransform(opacity, (val) => val <= 0 ? "hidden" : "visible");
 
     useEffect(() => {
-        const isMobileView = window.innerWidth < 768;
+        const isMobileView = window.innerWidth < 1024;
         if (isMobileView) {
             setIsMobile(true);
             return;
@@ -47,7 +47,7 @@ export function Hero() {
         }
         setImages(loadedImages);
 
-        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        const checkMobile = () => setIsMobile(window.innerWidth < 1024);
         checkMobile();
         window.addEventListener('resize', checkMobile);
         return () => window.removeEventListener('resize', checkMobile);
