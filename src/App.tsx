@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import Lenis from 'lenis';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { ScrollVideoPart2 } from './components/ScrollVideoPart2';
 import { AliceProjectDetails } from './components/AliceProjectDetails';
 import { Contact } from './components/Contact';
 import { OtherProjects } from './components/OtherProjects';
@@ -45,7 +44,6 @@ function App() {
           <Hero />
           <AboutMe />
           <OtherProjects />
-          <ScrollVideoPart2 />
           <AliceProjectDetails />
           <TestimonialsSection />
           <Contact />

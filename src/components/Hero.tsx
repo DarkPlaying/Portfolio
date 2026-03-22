@@ -112,10 +112,10 @@ export function Hero() {
             <div id="about" className="absolute top-[79%] bottom-0 w-full pointer-events-none" />
 
             <motion.div
-                style={{ 
-                    opacity: isMobile ? 1 : opacity, 
-                    pointerEvents: isMobile ? "auto" : pointerEvents, 
-                    visibility: isMobile ? "visible" : visibility 
+                style={{
+                    opacity: isMobile ? 1 : opacity,
+                    pointerEvents: isMobile ? "auto" : pointerEvents,
+                    visibility: isMobile ? "visible" : visibility
                 }}
                 className={`${isMobile ? 'relative' : 'fixed'} top-0 left-0 w-full h-screen overflow-hidden block z-0`}
             >
@@ -156,15 +156,15 @@ export function Hero() {
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0 }}
-                            className="absolute bottom-10 inset-x-0 flex flex-col items-center gap-2 z-20 pointer-events-none text-center"
+                            className="absolute bottom-3 inset-x-0 flex flex-col items-center gap-2 z-20 pointer-events-none text-center"
                             style={{ opacity: scrollIndicatorOpacity }}
                         >
-                            <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-white/40 block w-full">Scroll Down</span>
+                            <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-white/60 block w-full">Scroll Down</span>
                             <motion.div
                                 animate={{ y: [0, 8, 0] }}
                                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                             >
-                                <ChevronDown size={20} className="text-[#ff0050]" />
+                                <ChevronDown size={24} className="text-[#ff0050] drop-shadow-[0_0_8px_rgba(255,0,80,0.5)]" />
                             </motion.div>
                         </motion.div>
                     )}
