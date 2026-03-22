@@ -42,9 +42,9 @@ function App() {
         <Navbar />
         <main>
           <Hero />
+          <OtherProjects />
           <ScrollVideoPart2 />
           <AliceProjectDetails />
-          <OtherProjects />
           <TestimonialsSection />
           <Contact />
           <Footer />

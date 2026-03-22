@@ -3,7 +3,10 @@
 
 @theme {
   --font-sans: "Space Grotesk", "system-ui", "sans-serif";
-  --font-script: "Pinyon Script", "cursive";
+  --font-signature: "Pinyon Script", "cursive";
+  --font-outfit: "Outfit", "sans-serif";
+  --font-serif-display: "Playfair Display", "serif";
+  --color-yellow-accent: #ffb800;
 }
 
 * {

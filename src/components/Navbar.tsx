@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Menu, X, Home, User, Briefcase, MessageSquare, Star } from 'lucide-react';
 import { NavBar } from './ui/tubelight-navbar';
-
 export function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -17,7 +17,7 @@ export function Navbar() {
     const navLinks = [
         { name: 'Home', url: '#home', icon: Home },
         { name: 'About', url: '#about-trigger', icon: User },
-        { name: 'Projects', url: '#projects', icon: Briefcase },
+        { name: 'Projects', url: '#projects-part2', icon: Briefcase },
         { name: 'Testimonials', url: '#testimonials', icon: Star },
         { name: 'Contact', url: '#contact', icon: MessageSquare },
     ];
@@ -29,7 +29,7 @@ export function Navbar() {
         >
             <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
                 <a href="#home" className="text-2xl font-black font-outfit tracking-tighter text-white uppercase group flex items-center">
-                    SANJAY<span className="text-white ml-2 transition-transform group-hover:translate-x-1">M</span>
+                    <span className="absolute font-signature text-2xl  mt-5 md:text-3xl text-white opacity-90 rotate-[-5deg] pointer-events-none drop-shadow-xl">SANJAY M</span>
                 </a>
 
                 {/* Tubelight Nav - Centered */}
@@ -38,13 +38,18 @@ export function Navbar() {
                 </div>
 
                 <div className="hidden md:block">
-                    <a
+                    <motion.a
+                        animate={{
+                            scale: [1, 1.05, 1],
+                            boxShadow: ["0 0 0px rgba(255,0,80,0)", "0 0 15px rgba(255,0,80,0.3)", "0 0 0px rgba(255,0,80,0)"]
+                        }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
                         href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/resume.pdf`}
                         download="Sanjay_Resume.pdf"
-                        className="bg-white text-black px-6 py-2.5 rounded-xl font-black font-outfit text-xs uppercase tracking-widest hover:bg-[#ff0050] hover:text-white transition-all hover:shadow-[0_0_20px_rgba(255,0,80,0.4)]"
+                        className="bg-white text-black px-6 py-2.5 rounded-xl font-black font-outfit text-xs uppercase tracking-widest hover:bg-[#ff0050] hover:text-white transition-all relative z-10"
                     >
                         Grab Resume
-                    </a>
+                    </motion.a>
                 </div>
 
                 {/* Mobile Toggle */}

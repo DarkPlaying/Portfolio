@@ -29,7 +29,7 @@ const testimonials = [
 ];
 
 export const TestimonialsSection = () => (
-    <section id="testimonials" className="py-24 bg-black relative z-10">
+    <section id="testimonials" className="pt-4 pb-24 bg-black relative z-10">
         <div className="container mx-auto px-6 max-w-7xl">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -44,8 +44,15 @@ export const TestimonialsSection = () => (
             </motion.div>
 
             {/* Global Unified Design Style */}
-            <div className="bg-zinc-950/40 backdrop-blur-2xl border border-white/[0.08] p-12 md:p-20 rounded-[2.5rem] flex items-center justify-center relative overflow-hidden shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#ff0050]/5 to-transparent pointer-events-none" />
+            <motion.div
+                animate={{
+                    borderColor: ["rgba(255,255,255,0.08)", "rgba(255,0,80,0.2)", "rgba(255,255,255,0.08)"],
+                    boxShadow: ["0 0 20px rgba(255,0,80,0)", "0 0 50px rgba(255,0,80,0.15)", "0 0 20px rgba(255,0,80,0)"]
+                }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="bg-zinc-950/40 backdrop-blur-2xl border p-12 md:p-20 rounded-[2.5rem] flex items-center justify-center relative overflow-hidden shadow-2xl"
+            >
+                <div className="absolute inset-0 bg-gradient-to-br from-[#ff0050]/10 to-transparent pointer-events-none opacity-60" />
 
                 <CircularTestimonials
                     testimonials={testimonials}
@@ -64,7 +71,7 @@ export const TestimonialsSection = () => (
                         quote: "20px",
                     }}
                 />
-            </div>
+            </motion.div>
         </div>
     </section>
 );

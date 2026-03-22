@@ -1,4 +1,5 @@
-import { Github, Linkedin, Mail, Twitter, ChevronUp } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Github, Linkedin, Mail, Instagram, ChevronUp } from 'lucide-react';
 
 export function Footer() {
     const scrollToTop = () => {
@@ -15,10 +16,11 @@ export function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
                     {/* Brand Column */}
                     <div className="md:col-span-2">
-                        <h3 className="text-3xl font-black font-outfit text-white tracking-tighter uppercase mb-6">
-                            Sanjay <span className="text-[#ff0050]">M</span>
-                        </h3>
-                        <p className="text-zinc-500 text-sm font-mono leading-relaxed max-w-sm mb-8 opacity-70">
+                        <div className="relative mb-8 h-20 flex items-end pb-2">
+                            <span className="absolute left-0 top-0 font-signature text-5xl md:text-6xl text-yellow-accent opacity-90 rotate-[-5deg] pointer-events-none drop-shadow-2xl z-20">Sanjay M</span>
+                            <h3 className="text-2xl font-black font-outfit text-white/[0.03] tracking-[0.3em] uppercase relative z-10 select-none ml-2">ARCHITECT_OF_DIGITAL</h3>
+                        </div>
+                        <p className="text-white text-sm font-mono leading-relaxed max-w-sm mb-8 opacity-60">
                             Building secure, high-performance digital architectures with a focus on AI-driven systems and modern web technologies.
                         </p>
                         <div className="flex gap-4">
@@ -26,34 +28,34 @@ export function Footer() {
                                 { icon: Github, href: "https://github.com/DarkPlaying", label: "GitHub" },
                                 { icon: Linkedin, href: "https://www.linkedin.com/in/m-sanjay105623258/", label: "LinkedIn" },
                                 { icon: Mail, href: "mailto:sanjaymofficialmail@gmail.com", label: "Email" },
-                                { icon: Twitter, href: "#", label: "Twitter" }
+                                { icon: Instagram, href: "https://www.instagram.com/sanjay_m2356/", label: "Instagram" }
                             ].map((social, idx) => (
-                                <a
+                                <motion.a
                                     key={idx}
                                     href={social.href}
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="w-10 h-10 rounded-lg bg-white/[0.03] border border-white/10 flex items-center justify-center text-zinc-400 hover:text-[#ff0050] hover:border-[#ff0050]/40 transition-all"
+                                    className="w-10 h-10 rounded-lg bg-white/[0.03] border border-white/10 flex items-center justify-center text-white/60 hover:text-yellow-accent transition-all"
                                     aria-label={social.label}
                                 >
                                     <social.icon size={18} />
-                                </a>
+                                </motion.a>
                             ))}
                         </div>
                     </div>
 
                     {/* Quick Links */}
                     <div>
-                        <h4 className="text-[10px] font-mono font-bold text-[#ff0050] uppercase tracking-[0.4em] mb-6">Navigation</h4>
+                        <h4 className="text-[10px] font-mono font-bold text-white uppercase tracking-[0.4em] mb-6 opacity-60">Navigation</h4>
                         <ul className="space-y-4">
                             {[
                                 { label: 'Home', href: '#home' },
-                                { label: 'About', href: '#about' },
-                                { label: 'Projects', href: '#projects' },
+                                { label: 'About', href: '#about-trigger' },
+                                { label: 'Projects', href: '#projects-part2' },
                                 { label: 'Contact', href: '#contact' }
                             ].map((link, idx) => (
                                 <li key={idx}>
-                                    <a href={link.href} className="text-zinc-500 hover:text-white text-sm transition-colors uppercase tracking-widest">{link.label}</a>
+                                    <a href={link.href} className="text-white/60 hover:text-white text-sm transition-colors uppercase tracking-widest">{link.label}</a>
                                 </li>
                             ))}
                         </ul>
@@ -61,15 +63,15 @@ export function Footer() {
 
                     {/* Status Column */}
                     <div>
-                        <h4 className="text-[10px] font-mono font-bold text-[#ff0050] uppercase tracking-[0.4em] mb-6">System Status</h4>
+                        <h4 className="text-[10px] font-mono font-bold text-white uppercase tracking-[0.4em] mb-6 opacity-60">System Status</h4>
                         <div className="space-y-4">
                             <div className="flex items-center gap-3">
                                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)] animate-pulse" />
-                                <span className="text-zinc-500 text-[10px] font-mono uppercase tracking-wider">Interface Online</span>
+                                <span className="text-white/60 text-[10px] font-mono uppercase tracking-wider">Interface Online</span>
                             </div>
                             <div className="flex items-center gap-3">
                                 <div className="w-1.5 h-1.5 rounded-full bg-[#ff0050] shadow-[0_0_8px_rgba(255,0,80,0.6)]" />
-                                <span className="text-zinc-500 text-[10px] font-mono uppercase tracking-wider">v2.0 Deploy Ready</span>
+                                <span className="text-white/60 text-[10px] font-mono uppercase tracking-wider">v2.0 Deploy Ready</span>
                             </div>
                         </div>
                     </div>
@@ -77,14 +79,14 @@ export function Footer() {
 
                 {/* Bottom Bar */}
                 <div className="pt-8 border-t border-white/[0.05] flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p className="text-zinc-600 text-[10px] font-mono uppercase tracking-[0.2em]">
+                    <p className="text-white/40 text-[10px] font-mono uppercase tracking-[0.2em]">
                         © {new Date().getFullYear()} SANJAY M. ALL SYSTEMS OPERATIONAL.
                     </p>
                     <button
                         onClick={scrollToTop}
                         className="group flex items-center gap-3 text-zinc-500 hover:text-white transition-colors"
                     >
-                        <span className="text-[10px] font-mono uppercase tracking-[0.3em]">Back to Surface</span>
+                        <span className="text-white/60 text-[10px] font-mono uppercase tracking-[0.3em]">Back to Surface</span>
                         <div className="w-8 h-8 rounded-lg bg-white/[0.03] border border-white/10 flex items-center justify-center group-hover:bg-[#ff0050]/20 group-hover:border-[#ff0050]/40 transition-all">
                             <ChevronUp size={16} />
                         </div>

@@ -65,8 +65,6 @@ export const CircularTestimonials = ({
 
     // State
     const [activeIndex, setActiveIndex] = useState(0);
-    const [hoverPrev, setHoverPrev] = useState(false);
-    const [hoverNext, setHoverNext] = useState(false);
     const [containerWidth, setContainerWidth] = useState(1200);
 
     const imageContainerRef = useRef<HTMLDivElement>(null);
@@ -244,30 +242,30 @@ export const CircularTestimonials = ({
                         </motion.div>
                     </AnimatePresence>
                     <div className="flex gap-6 pt-12 md:pt-0">
-                        <button
-                            className="w-[2.7rem] h-[2.7rem] rounded-full flex items-center justify-center cursor-pointer transition-colors border-none"
-                            onClick={handlePrev}
-                            style={{
-                                backgroundColor: hoverPrev ? colorArrowHoverBg : colorArrowBg,
+                        <motion.button
+                            animate={{
+                                backgroundColor: [colorArrowBg, colorArrowHoverBg, colorArrowBg],
+                                boxShadow: ["0 0 0px rgba(255,0,80,0)", "0 0 20px rgba(255,0,80,0.4)", "0 0 0px rgba(255,0,80,0)"]
                             }}
-                            onMouseEnter={() => setHoverPrev(true)}
-                            onMouseLeave={() => setHoverPrev(false)}
+                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                            className="w-[2.7rem] h-[2.7rem] rounded-full flex items-center justify-center cursor-pointer border-none"
+                            onClick={handlePrev}
                             aria-label="Previous testimonial"
                         >
                             <ArrowLeft size={28} color={colorArrowFg} />
-                        </button>
-                        <button
-                            className="w-[2.7rem] h-[2.7rem] rounded-full flex items-center justify-center cursor-pointer transition-colors border-none"
-                            onClick={handleNext}
-                            style={{
-                                backgroundColor: hoverNext ? colorArrowHoverBg : colorArrowBg,
+                        </motion.button>
+                        <motion.button
+                            animate={{
+                                backgroundColor: [colorArrowBg, colorArrowHoverBg, colorArrowBg],
+                                boxShadow: ["0 0 0px rgba(255,0,80,0)", "0 0 20px rgba(255,0,80,0.4)", "0 0 0px rgba(255,0,80,0)"]
                             }}
-                            onMouseEnter={() => setHoverNext(true)}
-                            onMouseLeave={() => setHoverNext(false)}
+                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                            className="w-[2.7rem] h-[2.7rem] rounded-full flex items-center justify-center cursor-pointer border-none"
+                            onClick={handleNext}
                             aria-label="Next testimonial"
                         >
                             <ArrowRight size={28} color={colorArrowFg} />
-                        </button>
+                        </motion.button>
                     </div>
                 </div>
             </div>

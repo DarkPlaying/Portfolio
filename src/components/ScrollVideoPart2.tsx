@@ -109,7 +109,7 @@ export function ScrollVideoPart2() {
     }, [images, frameIndex, imagesLoaded]);
 
     return (
-        <section ref={sectionRef} className="relative h-[300vh] bg-black z-0 snap-start">
+        <section id="projects-part2" ref={sectionRef} className="relative h-[300vh] bg-black z-0 snap-start">
             <motion.div
                 style={{ opacity, pointerEvents, visibility }}
                 className="sticky top-0 left-0 w-full h-screen overflow-hidden block z-0"

@@ -1,128 +1,112 @@
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Phone, Github, Linkedin, Download, Send } from 'lucide-react';
+import { Mail, MapPin, Phone, Github, Linkedin, Instagram, Globe } from 'lucide-react';
 import { resumeData } from '@/data/resume';
 
 export function Contact() {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const subject = formData.get('subject');
+        const message = formData.get('message');
+
+        const mailtoUrl = `mailto:${resumeData.contact.email}?subject=${encodeURIComponent(subject as string)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+        window.location.href = mailtoUrl;
+    };
+
     return (
-        <section id="contact" className="py-32 bg-[#050505] border-t border-white/[0.05] relative overflow-hidden z-20 snap-start">
-            <style>
-                {`
-                @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap');
-                .font-outfit { font-family: 'Outfit', sans-serif; }
-                `}
-            </style>
+        <section id="contact" className="py-24 bg-[#0F0A0A] relative overflow-hidden z-20">
+            <div className="container mx-auto px-6 max-w-7xl">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-start">
 
-            {/* Background Decorative Blur */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-[#ff0050]/5 rounded-full blur-[150px] pointer-events-none -z-10 animate-pulse"></div>
-
-            <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
-
-                {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="text-center mb-20"
-                >
-                    <div className="flex items-center justify-center gap-4 mb-6 opacity-60">
-                        <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#ff0050]" />
-                        <span className="text-[10px] font-mono font-bold text-[#ff0050] uppercase tracking-[0.5em]">Transmission</span>
-                        <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#ff0050]" />
-                    </div>
-                    <h2 className="text-3xl md:text-6xl font-bold font-outfit text-white tracking-tight uppercase mb-6 leading-none">
-                        Get In <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-[#ff0050]/60 drop-shadow-[0_0_15px_rgba(255,0,80,0.2)]">Touch</span>
-                    </h2>
-                    <p className="text-zinc-500 font-mono text-[10px] uppercase tracking-wider max-w-md mx-auto opacity-70">
-                        Ready to collaborate on secure digital architecture or next-gen web platforms?
-                    </p>
-                </motion.div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
-
-                    {/* Contact Channels */}
+                    {/* Left Column: Get In Touch */}
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="bg-black/60 backdrop-blur-3xl border border-white/[0.08] rounded-[2rem] md:rounded-[2.5rem] p-8 md:p-14 shadow-2xl space-y-8 md:space-y-10 relative overflow-hidden group hover:border-[#ff0050]/20 transition-all duration-500"
+                        className="space-y-12"
                     >
-                        <div className="absolute top-0 right-0 p-12 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-1000">
-                            <Send size={150} className="text-[#ff0050]" strokeWidth={1} />
+                        <div className="space-y-6">
+                            <p className="text-yellow-accent font-bold uppercase tracking-[0.4em] text-[10px]">Keep Close</p>
+                            <h2 className="text-5xl md:text-7xl font-black font-outfit text-white uppercase tracking-tight leading-none">Get In Touch</h2>
+                            <p className="text-white/40 text-sm leading-relaxed max-w-lg">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean que commodo ligula eget dolor. Aenean massa. Cum sociis nec natoqueque penatibus et magnis dis parturient montes, nascetur ridiculusser mus. Donec quam felis, ultricies nec, pellentesque eu, pretiumqu quis, sem. Nulla consequat massa quis enim.
+                            </p>
                         </div>
 
-                        {[
-                            { icon: Mail, label: 'Email', value: resumeData.contact.email, link: `mailto:${resumeData.contact.email}` },
-                            { icon: Phone, label: 'Phone', value: resumeData.contact.phone, link: `tel:${resumeData.contact.phone.replace(/\s/g, '')}` },
-                            { icon: MapPin, label: 'Coordinates', value: resumeData.contact.location, link: '#' }
-                        ].map((item, idx) => (
-                            <a
-                                key={idx}
-                                href={item.link}
-                                className="flex items-center gap-6 group/item relative z-10"
-                            >
-                                <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-[#ff0050]/10 border border-[#ff0050]/20 flex items-center justify-center text-[#ff0050] group-hover/item:bg-[#ff0050] group-hover/item:text-white transition-all duration-300 group-hover/item:shadow-[0_0_20px_rgba(255,0,80,0.3)]">
-                                    <item.icon size={20} className="md:w-6 md:h-6" />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+                            {[
+                                { icon: MapPin, text: resumeData.contact.location, sub: 'Puzhal, Chennai-600066' },
+                                { icon: Phone, text: resumeData.contact.phone, sub: '+91 843 8509 355' },
+                                { icon: Mail, text: resumeData.contact.email, sub: 'Mail Me Directly' },
+                                { icon: Globe, text: 'Always Online', sub: 'Global Connectivity' }
+                            ].map((item, idx) => (
+                                <div key={idx} className="flex items-start gap-4">
+                                    <div className="text-yellow-accent mt-1">
+                                        <item.icon size={20} strokeWidth={2.5} />
+                                    </div>
+                                    <div className="space-y-1">
+                                        <p className="text-white font-bold text-sm tracking-tight">{item.text}</p>
+                                        <p className="text-white/30 text-[10px] uppercase tracking-wider">{item.sub}</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p className="text-[9px] md:text-[10px] font-mono font-bold text-zinc-600 uppercase tracking-widest mb-1">{item.label}</p>
-                                    <p className="text-lg md:text-xl font-bold font-outfit text-zinc-300 group-hover/item:text-white transition-colors tracking-wide break-all">{item.value}</p>
-                                </div>
-                            </a>
-                        ))}
+                            ))}
+                        </div>
+
+                        <div className="space-y-6 pt-10">
+                            <p className="text-yellow-accent font-bold uppercase tracking-[0.4em] text-[10px]">Follow Us</p>
+                            <div className="flex gap-8">
+                                {[
+                                    { icon: Github, href: resumeData.contact.github },
+                                    { icon: Linkedin, href: resumeData.contact.linkedin },
+                                    { icon: Mail, href: `mailto:${resumeData.contact.email}` },
+                                    { icon: Instagram, href: 'https://www.instagram.com/sanjay_m2356/' }
+                                ].map((item, idx) => (
+                                    <a key={idx} href={item.href} target="_blank" rel="noreferrer" className="text-white hover:text-yellow-accent transition-colors">
+                                        <item.icon size={18} strokeWidth={2.5} />
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
                     </motion.div>
 
-                    {/* Quick Access & Socials */}
+                    {/* Right Column: Your Details */}
                     <motion.div
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="flex flex-col gap-8"
+                        className="space-y-12"
                     >
-                        {/* Resume Card */}
-                        <div className="flex-1 bg-black/60 backdrop-blur-3xl border border-white/[0.08] rounded-[2rem] md:rounded-[2.5rem] p-8 md:p-10 flex flex-col items-center justify-center text-center relative overflow-hidden group hover:border-[#ff0050]/20 transition-all duration-500">
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#ff0050]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                            <div className="w-16 h-16 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-zinc-500 mb-8 relative z-10 group-hover:bg-[#ff0050]/10 group-hover:border-[#ff0050]/30 group-hover:text-[#ff0050] transition-all">
-                                <Download size={28} />
-                            </div>
-
-                            <h4 className="text-2xl font-bold font-outfit text-white uppercase tracking-widest mb-4 relative z-10">Resume File</h4>
-                            <p className="text-zinc-500 text-sm font-light mb-8 max-w-[240px] relative z-10 opacity-70">Download the detailed technical dossier (Resume).</p>
-
-                            <a
-                                href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/resume.pdf`}
-                                download="Sanjay_Resume.pdf"
-                                className="w-full bg-[#ff0050] hover:bg-[#ff0050]/90 text-white font-bold font-outfit uppercase tracking-widest py-4 rounded-xl transition-all hover:shadow-[0_0_25px_rgba(255,0,80,0.3)] relative z-10"
-                            >
-                                Download File
-                            </a>
+                        <div className="space-y-4">
+                            <h2 className="text-4xl md:text-6xl font-black font-outfit text-white uppercase tracking-tight">Your Details</h2>
+                            <p className="text-white/30 text-[11px] uppercase tracking-[0.2em]">Let us know how to get back to you.</p>
                         </div>
 
-                        {/* Social Links */}
-                        <div className="bg-black/40 backdrop-blur-2xl border border-white/[0.08] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-8 flex items-center justify-between px-8 md:px-10">
-                            <span className="text-[9px] md:text-[10px] font-mono font-bold text-zinc-600 uppercase tracking-[0.4em]">Secure Channels</span>
-                            <div className="flex gap-4">
-                                <a
-                                    href={resumeData.contact.github}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="w-14 h-14 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-zinc-400 hover:text-[#ff0050] hover:border-[#ff0050]/40 transition-all hover:scale-110"
-                                >
-                                    <Github size={24} />
-                                </a>
-                                <a
-                                    href={resumeData.contact.linkedin}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="w-14 h-14 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-zinc-400 hover:text-[#ff0050] hover:border-[#ff0050]/40 transition-all hover:scale-110"
-                                >
-                                    <Linkedin size={24} />
-                                </a>
+                        <form className="space-y-10" onSubmit={handleSubmit}>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-10">
+                                <div className="space-y-3 relative group">
+                                    <label className="text-white/60 text-[10px] uppercase font-bold tracking-[0.3em]">Name *</label>
+                                    <input name="name" type="text" required placeholder="Jhon" className="w-full bg-white/5 border-b border-white/20 py-4 text-white placeholder:text-white/10 focus:border-yellow-accent focus:outline-none transition-all" />
+                                </div>
+                                <div className="space-y-3 relative group">
+                                    <label className="text-white/60 text-[10px] uppercase font-bold tracking-[0.3em]">Email Address *</label>
+                                    <input name="email" type="email" required placeholder="email@email.com" className="w-full bg-white/5 border-b border-white/20 py-4 text-white placeholder:text-white/10 focus:border-yellow-accent focus:outline-none transition-all" />
+                                </div>
                             </div>
-                        </div>
+
+                            <div className="space-y-3 relative group">
+                                <label className="text-white/60 text-[10px] uppercase font-bold tracking-[0.3em]">Subject *</label>
+                                <input name="subject" type="text" required placeholder="Subject" className="w-full bg-white/5 border-b border-white/20 py-4 text-white placeholder:text-white/10 focus:border-yellow-accent focus:outline-none transition-all" />
+                            </div>
+
+                            <div className="space-y-3 relative group">
+                                <label className="text-white/60 text-[10px] uppercase font-bold tracking-[0.3em]">Comments / Questions *</label>
+                                <textarea name="message" rows={4} required placeholder="Question" className="w-full bg-white/5 border-b border-white/20 py-4 text-white placeholder:text-white/10 focus:border-yellow-accent focus:outline-none transition-all resize-none"></textarea>
+                            </div>
+
+                            <button type="submit" className="bg-yellow-accent hover:shadow-[0_0_40px_rgba(255,184,0,0.3)] text-black font-black py-5 px-14 rounded-sm transition-all uppercase tracking-[0.3em] text-[10px] mt-4">
+                                Contact Us
+                            </button>
+                        </form>
                     </motion.div>
 
                 </div>

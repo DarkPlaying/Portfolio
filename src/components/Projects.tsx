@@ -50,7 +50,7 @@ export function Projects() {
     ];
 
     return (
-        <section id="projects" className="relative z-10 bg-black min-h-screen py-24 snap-start scroll-mt-0 overflow-hidden">
+        <section id="projects" className="relative z-10 bg-black min-h-screen py-24 snap-start scroll-mt-24 overflow-hidden">
             {/* Header */}
             <div className="relative z-50 text-center container mx-auto px-4 mb-32">
                 <style>
