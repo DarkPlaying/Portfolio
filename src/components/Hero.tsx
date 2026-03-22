@@ -21,10 +21,11 @@ export function Hero() {
     });
 
     // Map scroll progress (0 to 1) to frame index (1 to 160)
-    const frameIndex = useTransform(scrollYProgress, [0, 1], [1, FRAME_COUNT]);
+    // Reach frame 160 earlier (at 83% of section scroll) so it stays visible for About Me
+    const frameIndex = useTransform(scrollYProgress, [0, 0.83], [1, FRAME_COUNT], { clamp: true });
 
-    // Fade out as we reach the end of the hero section to transition smoothly to projects
-    const opacity = useTransform(scrollYProgress, [0.85, 0.95], [1, 0]);
+    // Fade out later, giving the final "About Me" frame time to be seen
+    const opacity = useTransform(scrollYProgress, [0.92, 0.98], [1, 0]);
 
     // Scroll Down Indicator opacity
     const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
@@ -127,7 +128,7 @@ export function Hero() {
             {/* Precise Nav anchors inside the scroll track */}
             {/* Frame 125 is at ~78% of the scroll track (400vh), which is 62.5% of total 500vh */}
             <div id="hero-start" className="absolute top-0 h-1 w-1" />
-            <div id="about-trigger" className="absolute top-[62.5%] h-1 w-1" />
+            <div id="about-trigger" className="absolute top-[83%] h-1 w-1" />
 
             <motion.div
                 style={{ opacity, pointerEvents, visibility }}
