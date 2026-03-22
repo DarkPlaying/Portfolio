@@ -9,6 +9,7 @@ import { OtherProjects } from './components/OtherProjects';
 import { TestimonialsSection } from './components/TestimonialsSection';
 import { Footer } from './components/Footer';
 
+import { AboutMe } from './components/AboutMe';
 import { Loader } from './components/Loader';
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
       <div className="min-h-screen bg-black text-white font-sans selection:bg-blue-500/30 scroll-smooth pb-0 relative">
         <main>
           <Hero />
+          <AboutMe />
           <OtherProjects />
           <ScrollVideoPart2 />
           <AliceProjectDetails />
