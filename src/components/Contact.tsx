@@ -41,7 +41,14 @@ export function Contact() {
                                 { icon: Mail, text: resumeData.contact.email, sub: 'Mail Me Directly' },
                                 { icon: Globe, text: 'Always Online', sub: 'Global Connectivity' }
                             ].map((item, idx) => (
-                                <div key={idx} className="flex items-start gap-4">
+                                <motion.div
+                                    key={idx}
+                                    initial={{ opacity: 0, y: 15 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.2 + idx * 0.1 }}
+                                    className="flex items-start gap-4"
+                                >
                                     <div className="text-yellow-accent mt-1">
                                         <item.icon size={20} strokeWidth={2.5} />
                                     </div>
@@ -49,7 +56,7 @@ export function Contact() {
                                         <p className="text-white font-bold text-sm tracking-tight">{item.text}</p>
                                         <p className="text-white/30 text-[10px] uppercase tracking-wider">{item.sub}</p>
                                     </div>
-                                </div>
+                                </motion.div>
                             ))}
                         </div>
 
@@ -62,9 +69,19 @@ export function Contact() {
                                     { icon: Mail, href: `mailto:${resumeData.contact.email}` },
                                     { icon: Instagram, href: 'https://www.instagram.com/sanjay_m2356/' }
                                 ].map((item, idx) => (
-                                    <a key={idx} href={item.href} target="_blank" rel="noreferrer" className="text-white hover:text-yellow-accent transition-colors">
+                                    <motion.a
+                                        key={idx}
+                                        href={item.href}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.5 + idx * 0.1 }}
+                                        className="text-white hover:text-yellow-accent transition-all hover:scale-125"
+                                    >
                                         <item.icon size={18} strokeWidth={2.5} />
-                                    </a>
+                                    </motion.a>
                                 ))}
                             </div>
                         </div>
@@ -84,23 +101,23 @@ export function Contact() {
                         <form className="space-y-10" onSubmit={handleSubmit}>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-10">
                                 <div className="space-y-3 relative group">
-                                    <label className="text-white/60 text-[10px] uppercase font-bold tracking-[0.3em]">Name *</label>
-                                    <input name="name" type="text" required placeholder="Jhon" className="w-full bg-white/5 border-b border-white/20 py-4 text-white placeholder:text-white/10 focus:border-yellow-accent focus:outline-none transition-all" />
+                                    <label className="text-white/60 text-[10px] uppercase font-bold tracking-[0.3em] ml-6">Name *</label>
+                                    <input name="name" type="text" required placeholder="Jhon" className="w-full bg-white/5 border-b border-white/20 px-6 py-4 text-white placeholder:text-white/10 focus:border-yellow-accent focus:outline-none transition-all leading-none" />
                                 </div>
                                 <div className="space-y-3 relative group">
-                                    <label className="text-white/60 text-[10px] uppercase font-bold tracking-[0.3em]">Email Address *</label>
-                                    <input name="email" type="email" required placeholder="email@email.com" className="w-full bg-white/5 border-b border-white/20 py-4 text-white placeholder:text-white/10 focus:border-yellow-accent focus:outline-none transition-all" />
+                                    <label className="text-white/60 text-[10px] uppercase font-bold tracking-[0.3em] ml-6">Email Address *</label>
+                                    <input name="email" type="email" required placeholder="email@email.com" className="w-full bg-white/5 border-b border-white/20 px-6 py-4 text-white placeholder:text-white/10 focus:border-yellow-accent focus:outline-none transition-all leading-none" />
                                 </div>
                             </div>
 
                             <div className="space-y-3 relative group">
-                                <label className="text-white/60 text-[10px] uppercase font-bold tracking-[0.3em]">Subject *</label>
-                                <input name="subject" type="text" required placeholder="Subject" className="w-full bg-white/5 border-b border-white/20 py-4 text-white placeholder:text-white/10 focus:border-yellow-accent focus:outline-none transition-all" />
+                                <label className="text-white/60 text-[10px] uppercase font-bold tracking-[0.3em] ml-6">Subject *</label>
+                                <input name="subject" type="text" required placeholder="Subject" className="w-full bg-white/5 border-b border-white/20 px-6 py-4 text-white placeholder:text-white/10 focus:border-yellow-accent focus:outline-none transition-all leading-none" />
                             </div>
 
                             <div className="space-y-3 relative group">
-                                <label className="text-white/60 text-[10px] uppercase font-bold tracking-[0.3em]">Comments / Questions *</label>
-                                <textarea name="message" rows={4} required placeholder="Question" className="w-full bg-white/5 border-b border-white/20 py-4 text-white placeholder:text-white/10 focus:border-yellow-accent focus:outline-none transition-all resize-none"></textarea>
+                                <label className="text-white/60 text-[10px] uppercase font-bold tracking-[0.3em] ml-6">Comments / Questions *</label>
+                                <textarea name="message" rows={4} required placeholder="Question" className="w-full bg-white/5 border-b border-white/20 px-6 py-4 text-white placeholder:text-white/10 focus:border-yellow-accent focus:outline-none transition-all resize-none"></textarea>
                             </div>
 
                             <button type="submit" className="bg-yellow-accent hover:shadow-[0_0_40px_rgba(255,184,0,0.3)] text-black font-black py-5 px-14 rounded-sm transition-all uppercase tracking-[0.3em] text-[10px] mt-4">

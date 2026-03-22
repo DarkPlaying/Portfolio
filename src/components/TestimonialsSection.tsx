@@ -31,17 +31,43 @@ const testimonials = [
 export const TestimonialsSection = () => (
     <section id="testimonials" className="pt-4 pb-24 bg-black relative z-10">
         <div className="container mx-auto px-6 max-w-7xl">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-center mb-16"
-            >
-                <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter mb-4">
-                    What They <span className="text-[#ff0050]">Think</span>
-                </h2>
-                <p className="text-zinc-500 font-mono text-xs uppercase tracking-[0.5em]">Feedback From the System</p>
-            </motion.div>
+            <div className="relative mb-20 flex flex-col items-center text-center w-full">
+                <motion.span
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="block font-great-vibes text-4xl md:text-6xl mb-[-0.4em] relative z-20 drop-shadow-[0_4px_10px_rgba(255,0,80,0.3)] text-[#ff0050]"
+                >
+                    What They
+                </motion.span>
+                <motion.h2
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="text-5xl md:text-[4.5rem] lg:text-[6.5rem] font-serif-display text-white uppercase tracking-tighter leading-none italic"
+                >
+                    Think
+                </motion.h2>
+
+                <div className="mt-2 relative group">
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ delay: 0.5 }}
+                        className="text-zinc-500 font-mono text-[10px] uppercase tracking-[0.5em]"
+                    >
+                        Feedback From the
+                    </motion.p>
+                    <motion.span
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.7 }}
+                        className="text-zinc-500 font-mono text-[10px] uppercase tracking-[0.5em]"
+                    >
+                        System
+                    </motion.span>
+                </div>
+            </div>
 
             {/* Global Unified Design Style */}
             <motion.div

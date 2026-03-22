@@ -21,8 +21,8 @@ export function Hero() {
     });
 
     // Map scroll progress (0 to 1) to frame index (1 to 160)
-    // Reach frame 160 earlier (at 83% of section scroll) so it stays visible for About Me
-    const frameIndex = useTransform(scrollYProgress, [0, 0.83], [1, FRAME_COUNT], { clamp: true });
+    // Reach frame 160 at 80% of section scroll for perfect alignment with navbar trigger
+    const frameIndex = useTransform(scrollYProgress, [0, 0.8], [1, FRAME_COUNT], { clamp: true });
 
     // Fade out later, giving the final "About Me" frame time to be seen
     const opacity = useTransform(scrollYProgress, [0.92, 0.98], [1, 0]);
@@ -126,9 +126,9 @@ export function Hero() {
     return (
         <section id="home" ref={sectionRef} className="relative h-[500vh] bg-black z-0 snap-start">
             {/* Precise Nav anchors inside the scroll track */}
-            {/* Frame 125 is at ~78% of the scroll track (400vh), which is 62.5% of total 500vh */}
+            {/* Frame 160 is at 80% of the scroll track for perfect sync with frameIndex */}
             <div id="hero-start" className="absolute top-0 h-1 w-1" />
-            <div id="about-trigger" className="absolute top-[83%] h-1 w-1" />
+            <div id="about" className="absolute top-[79%] bottom-0 w-full pointer-events-none" />
 
             <motion.div
                 style={{ opacity, pointerEvents, visibility }}

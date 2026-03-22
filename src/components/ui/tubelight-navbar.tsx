@@ -12,14 +12,25 @@ interface NavItem {
 interface NavBarProps {
     items: NavItem[]
     className?: string
+    activeTab?: string
 }
 
-export function NavBar({ items, className }: NavBarProps) {
-    const [activeTab, setActiveTab] = useState(items[0].name)
+export function NavBar({ items, className, activeTab: activeTabProp }: NavBarProps) {
+    const [activeTab, setActiveTab] = useState(activeTabProp || items[0].name)
+
+    // Sync internal state with prop
+    useEffect(() => {
+        if (activeTabProp) {
+            setActiveTab(activeTabProp)
+        }
+    }, [activeTabProp])
 
     // Update active tab based on scroll position/hash
     useEffect(() => {
         const handleHashChange = () => {
+            // Only use hash if we don't have a prop controlling us
+            if (activeTabProp) return;
+
             const currentHash = window.location.hash || "#home"
             const activeItem = items.find(item => item.url === currentHash)
             if (activeItem) setActiveTab(activeItem.name)
@@ -27,7 +38,7 @@ export function NavBar({ items, className }: NavBarProps) {
         window.addEventListener("hashchange", handleHashChange)
         handleHashChange() // initial check
         return () => window.removeEventListener("hashchange", handleHashChange)
-    }, [items])
+    }, [items, activeTabProp])
 
     return (
         <div

@@ -38,8 +38,8 @@ function App() {
 
   return (
     <Loader>
-      <div className="min-h-screen bg-black text-white font-sans overflow-clip selection:bg-blue-500/30 snap-y snap-mandatory scroll-smooth pb-0">
-        <Navbar />
+      <Navbar />
+      <div className="min-h-screen bg-black text-white font-sans selection:bg-blue-500/30 scroll-smooth pb-0 relative">
         <main>
           <Hero />
           <OtherProjects />

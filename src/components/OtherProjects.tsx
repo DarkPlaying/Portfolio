@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ExternalLink, ShieldAlert, Code2, Smartphone, GraduationCap, Briefcase, Trophy, Globe, Lock } from 'lucide-react';
+import { ShieldAlert, Code2, Smartphone, GraduationCap, Briefcase, Trophy, Globe } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export function OtherProjects() {
@@ -50,7 +50,7 @@ export function OtherProjects() {
     `;
 
     return (
-        <section id="other-projects" className="py-32 bg-black relative z-10 overflow-hidden border-t border-white/[0.05]">
+        <section id="about-details" className="py-32 bg-black relative z-10 overflow-hidden border-t border-white/[0.05]">
             <style>{pageStyles}</style>
 
             {/* Background Grid */}
@@ -154,13 +154,13 @@ export function OtherProjects() {
                     </div>
 
                     {/* 03: ACHIEVEMENTS & INTERNSHIP */}
-                    <div className="relative p-10 rounded-[2.5rem] bg-black/40 backdrop-blur-sm shadow-[0_0_150px_rgba(255,184,0,0.15)] overflow-hidden">
+                    <div className="relative p-10 rounded-[2.5rem] bg-black/40 backdrop-blur-sm shadow-[0_0_150px_rgba(255,184,0,0.15)] overflow-hidden md:col-span-2">
                         <span className="text-8xl font-bebas text-white/10 absolute -top-4 -right-2 drop-shadow-[0_0_30px_rgba(255,255,255,0.2)] select-none pointer-events-none">03</span>
                         <div className="flex items-center gap-4 mb-8">
                             <Trophy className="text-yellow-accent" size={32} />
                             <h3 className="text-2xl font-bold font-outfit text-white uppercase tracking-widest">Milestones</h3>
                         </div>
-                        <div className="space-y-8 relative z-10">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
                             <div>
                                 <h4 className="flex items-center gap-2 text-sm font-bold font-mono text-yellow-accent uppercase mb-3 tracking-widest">
                                     <Briefcase size={14} /> Internship
@@ -170,47 +170,21 @@ export function OtherProjects() {
                                     user-friendly interfaces and collaborating on intuitive UI design improvements.
                                 </p>
                             </div>
-                            <div className="space-y-4">
-                                <h4 className="text-[10px] font-mono font-bold text-white/50 uppercase tracking-widest">Key Accomplishments</h4>
-                                <ul className="space-y-2 text-white text-sm font-light opacity-90">
-                                    <li className="flex items-start gap-2">• State-Level Chess Winner – Peri College</li>
-                                    <li className="flex items-start gap-2">• Active participant in CTF games & Hack The Box labs</li>
-                                </ul>
-                            </div>
-                            <div className="space-y-2">
-                                <h4 className="text-[10px] font-mono font-bold text-white/50 uppercase tracking-widest">Certifications</h4>
-                                <div className="text-xs text-white/70 space-x-4">
-                                    <span className="border-b border-white/10 pb-1">Mastering C Programming (Udemy)</span>
-                                    <span className="border-b border-white/10 pb-1">Cybersecurity (Cisco)</span>
+                            <div className="space-y-6">
+                                <div className="space-y-4">
+                                    <h4 className="text-[10px] font-mono font-bold text-white/50 uppercase tracking-widest">Key Accomplishments</h4>
+                                    <ul className="space-y-2 text-white text-sm font-light opacity-90">
+                                        <li className="flex items-start gap-2">• State-Level Chess Winner – Peri College</li>
+                                        <li className="flex items-start gap-2">• Active participant in CTF games & Hack The Box labs</li>
+                                    </ul>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* 04: PROJECTS ARCHIVE */}
-                    <div className="relative p-10 rounded-[2.5rem] bg-black/40 backdrop-blur-sm shadow-[0_0_150px_rgba(255,184,0,0.15)] overflow-hidden">
-                        <span className="text-8xl font-bebas text-white/10 absolute -top-4 -right-2 drop-shadow-[0_0_30px_rgba(255,255,255,0.2)] select-none pointer-events-none">04</span>
-                        <div className="flex items-center gap-4 mb-8">
-                            <Lock className="text-yellow-accent" size={32} />
-                            <h3 className="text-2xl font-bold font-outfit text-white uppercase tracking-widest">Project Vault</h3>
-                        </div>
-                        <div className="space-y-6 relative z-10">
-                            <h4 className="text-[10px] font-mono font-bold text-white/50 uppercase tracking-widest">Vibe Coding Projects</h4>
-                            <div className="grid grid-cols-1 gap-4">
-                                {[
-                                    { name: 'Educationfyp', url: 'Educationfyp.vercel.app', desc: 'AI-driven education platform powered by Firebase.' },
-                                    { name: 'Alice14', url: 'Alice14.vercel.app', desc: 'Dynamic gaming platform with real-time features.' },
-                                    { name: 'Ignixion', url: 'Ignixion.vervel.app', desc: 'Modern event website with intelligent redirection.' },
-                                    { name: 'Cyber25', url: 'Cyber25.vercel.app', desc: 'Cybersecurity CTF platform featuring labs.' }
-                                ].map((proj, idx) => (
-                                    <a key={idx} href={`https://${proj.url}`} target="_blank" rel="noreferrer" className="block group/item border border-white/5 p-3 rounded-lg hover:bg-white/5 transition-all">
-                                        <div className="flex justify-between items-center mb-1">
-                                            <span className="text-white font-bold text-xs uppercase tracking-widest group-hover/item:text-yellow-accent transition-colors">{proj.name}</span>
-                                            <ExternalLink size={12} className="text-white/60" />
-                                        </div>
-                                        <p className="text-[10px] text-white/60 italic">{proj.desc}</p>
-                                    </a>
-                                ))}
+                                <div className="space-y-2">
+                                    <h4 className="text-[10px] font-mono font-bold text-white/50 uppercase tracking-widest">Certifications</h4>
+                                    <div className="text-xs text-white/70 space-x-4">
+                                        <span className="border-b border-white/10 pb-1">Mastering C Programming (Udemy)</span>
+                                        <span className="border-b border-white/10 pb-1">Cybersecurity (Cisco)</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

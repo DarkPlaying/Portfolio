@@ -92,6 +92,7 @@ export function Loader({ children }: LoaderProps) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1 }}
+                    className="contents"
                 >
                     {children}
                 </motion.div>

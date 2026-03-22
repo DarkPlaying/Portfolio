@@ -18,7 +18,6 @@ export function Footer() {
                     <div className="md:col-span-2">
                         <div className="relative mb-8 h-20 flex items-end pb-2">
                             <span className="absolute left-0 top-0 font-signature text-5xl md:text-6xl text-yellow-accent opacity-90 rotate-[-5deg] pointer-events-none drop-shadow-2xl z-20">Sanjay M</span>
-                            <h3 className="text-2xl font-black font-outfit text-white/[0.03] tracking-[0.3em] uppercase relative z-10 select-none ml-2">ARCHITECT_OF_DIGITAL</h3>
                         </div>
                         <p className="text-white text-sm font-mono leading-relaxed max-w-sm mb-8 opacity-60">
                             Building secure, high-performance digital architectures with a focus on AI-driven systems and modern web technologies.
