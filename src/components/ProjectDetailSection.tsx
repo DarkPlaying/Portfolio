@@ -20,7 +20,7 @@ export function ProjectDetailSection({ titleMain, titleSub, subtitle, descriptio
     return (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start lg:items-center w-full max-w-full overflow-hidden">
             {/* Left Column: Stylized Image (Col-6) */}
-            <div className="lg:col-span-6 relative mt-16 lg:mt-0 order-2 lg:order-1 px-4 lg:px-0">
+            <div className="lg:col-span-6 relative mt-16 lg:mt-0 order-1 lg:order-1 px-4 lg:px-0">
                 <div className="absolute -top-10 -left-6 text-white/40 animate-pulse">
                     <span className="text-3xl">✦</span>
                 </div>
@@ -61,7 +61,7 @@ export function ProjectDetailSection({ titleMain, titleSub, subtitle, descriptio
             </div>
 
             {/* Right Column: Content (Col-6) */}
-            <div className="lg:col-span-6 flex flex-col items-start text-left relative z-10 order-1 lg:order-2 lg:pl-6 px-4 md:px-0 w-full max-w-full overflow-visible">
+            <div className="lg:col-span-6 flex flex-col items-start text-left relative z-10 order-2 lg:order-2 lg:pl-6 px-4 md:px-0 w-full max-w-full overflow-visible">
                 <div className="absolute -top-12 -right-6 text-white/20 animate-pulse pointer-events-none">
                     <span className="text-4xl">✦</span>
                 </div>
