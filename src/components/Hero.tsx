@@ -125,16 +125,16 @@ export function Hero() {
                         className="w-full h-full object-cover pointer-events-none"
                     />
                 ) : (
-                    <div className="absolute inset-0 bg-black">
+                    <div className="absolute inset-0 bg-black flex items-center justify-center">
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 1, ease: "easeOut" }}
-                            className="w-full h-full"
+                            className="w-full h-full relative"
                         >
                             <img
                                 src={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/me/Sanjay%20M%20(375%20x%20667%20px).png`}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-contain"
                                 alt="Sanjay M"
                             />
                         </motion.div>
