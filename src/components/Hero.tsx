@@ -117,6 +117,14 @@ export function Hero() {
     }, []);
 
     useEffect(() => {
+        if (isMobile) {
+            window.dispatchEvent(new CustomEvent('heroImagesLoaded'));
+        } else if (imagesLoaded >= FRAME_COUNT) {
+            window.dispatchEvent(new CustomEvent('heroImagesLoaded'));
+        }
+    }, [imagesLoaded, isMobile]);
+
+    useEffect(() => {
         if (isMobile || images.length === 0 || imagesLoaded < FRAME_COUNT / 2) return;
 
         const canvas = canvasRef.current;
