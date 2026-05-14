@@ -12,12 +12,20 @@ export function Loader({ children }: LoaderProps) {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setLoading(false)
-        }, 3000)
+        const handleLoad = () => {
+            // Small extra delay for visual smoothness before revealing content
+            setTimeout(() => {
+                setLoading(false);
+            }, 500);
+        };
 
-        return () => clearTimeout(timer)
-    }, [])
+        if (document.readyState === "complete") {
+            handleLoad();
+        } else {
+            window.addEventListener("load", handleLoad);
+            return () => window.removeEventListener("load", handleLoad);
+        }
+    }, []);
 
     return (
         <AnimatePresence mode="wait">
@@ -25,8 +33,8 @@ export function Loader({ children }: LoaderProps) {
                 <motion.div
                     key="loader"
                     initial={{ opacity: 1 }}
-                    exit={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                    exit={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
                     className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#050505]"
                 >
                     <CircleLoader screenHFull={false} />
@@ -36,7 +44,7 @@ export function Loader({ children }: LoaderProps) {
                     key="content"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 1 }}
+                    transition={{ duration: 0.5 }}
                     className="contents"
                 >
                     {children}

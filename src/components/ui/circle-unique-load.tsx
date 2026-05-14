@@ -28,7 +28,7 @@ export function Loading({ screenHFull = true }: loadingProps) {
         setState("_");
         setLoadText("Fetching");
       }
-    }, 400);
+    }, 200);
 
     return () => clearInterval(interval);
   }, [state]);
