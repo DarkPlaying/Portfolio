@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useScroll, useTransform, motion, AnimatePresence, useSpring } from 'framer-motion';
+import { useScroll, useTransform, motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 
 const FRAME_COUNT = 160;
