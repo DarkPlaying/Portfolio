@@ -1,9 +1,5 @@
-import { MorphingSquare } from "@/components/ui/morphing-square";
+import BoxLoader from "@/components/ui/box-loader";
 
 export default function DemoOne() {
-    return (
-        <div className="flex min-h-screen items-center justify-center bg-black">
-            <MorphingSquare message="Loading Portfolio Experience..." />
-        </div>
-    );
+  return <BoxLoader />;
 }

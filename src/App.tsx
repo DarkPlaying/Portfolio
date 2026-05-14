@@ -15,13 +15,14 @@ import { ScrollVideoPart2 } from './components/ScrollVideoPart2';
 function App() {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      duration: 0.4,
+      lerp: 0.4,
+      syncTouch: true,
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
+      wheelMultiplier: 1.2,
+      touchMultiplier: 2.0,
       infinite: false,
     });
 
@@ -40,7 +41,7 @@ function App() {
   return (
     <Loader>
       <Navbar />
-      <div className="min-h-screen bg-black text-white font-sans selection:bg-blue-500/30 scroll-smooth pb-0 relative">
+      <div className="min-h-screen bg-black text-white font-sans selection:bg-blue-500/30 pb-0 relative">
         <main>
           <Hero />
           <AboutMe />
