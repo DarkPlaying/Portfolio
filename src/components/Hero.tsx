@@ -92,37 +92,59 @@ export function Hero() {
             return;
         }
 
-        // Preload images for desktop sequence
-        const loadedImages: HTMLImageElement[] = [];
-        let loadedCount = 0;
+        // Optimized batched loading strategy
+        const preloadImages = async () => {
+            const loadedImages: HTMLImageElement[] = [];
+            let loadedCount = 0;
 
-        for (let i = 1; i <= FRAME_COUNT; i++) {
-            const img = new Image();
-            const formattedIndex = i.toString().padStart(3, '0');
-            const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
-            img.src = `${baseUrl}/me/ezgif-frame-${formattedIndex}.jpg`;
-
-            img.onload = () => {
-                loadedCount++;
-                setImagesLoaded(loadedCount);
+            const loadImg = (index: number) => {
+                return new Promise<void>((resolve) => {
+                    const img = new Image();
+                    const formattedIndex = index.toString().padStart(3, '0');
+                    const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
+                    img.src = `${baseUrl}/me/ezgif-frame-${formattedIndex}.jpg`;
+                    
+                    img.onload = () => {
+                        loadedCount++;
+                        setImagesLoaded(loadedCount);
+                        // Signal ready after the first 30 frames are loaded (enough for initial view and start of scroll)
+                        if (loadedCount === 30) {
+                            window.dispatchEvent(new CustomEvent('heroImagesLoaded'));
+                        }
+                        resolve();
+                    };
+                    img.onerror = () => resolve(); // Don't block on error
+                    loadedImages[index - 1] = img;
+                });
             };
-            loadedImages.push(img);
-        }
-        setImages(loadedImages);
+
+            // 1. Load first 30 frames with high priority
+            const initialBatch = [];
+            for (let i = 1; i <= 30; i++) {
+                initialBatch.push(loadImg(i));
+            }
+            await Promise.all(initialBatch);
+            setImages([...loadedImages]);
+
+            // 2. Load remaining frames in batches to avoid network choking
+            const remainingIndices = [];
+            for (let i = 31; i <= FRAME_COUNT; i++) remainingIndices.push(i);
+            
+            const batchSize = 10;
+            for (let i = 0; i < remainingIndices.length; i += batchSize) {
+                const batch = remainingIndices.slice(i, i + batchSize).map(loadImg);
+                await Promise.all(batch);
+                setImages([...loadedImages]);
+            }
+        };
+
+        preloadImages();
 
         const checkMobile = () => setIsMobile(window.innerWidth < 1024);
         checkMobile();
         window.addEventListener('resize', checkMobile);
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
-
-    useEffect(() => {
-        if (isMobile) {
-            window.dispatchEvent(new CustomEvent('heroImagesLoaded'));
-        } else if (imagesLoaded >= FRAME_COUNT) {
-            window.dispatchEvent(new CustomEvent('heroImagesLoaded'));
-        }
-    }, [imagesLoaded, isMobile]);
 
     useEffect(() => {
         if (isMobile || images.length === 0 || imagesLoaded < FRAME_COUNT / 2) return;

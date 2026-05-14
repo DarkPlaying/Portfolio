@@ -17,10 +17,9 @@ export function Loader({ children }: LoaderProps) {
 
         const checkReady = () => {
             if (assetsLoaded && heroImagesReady) {
-                // Small extra delay for visual smoothness before revealing content
                 setTimeout(() => {
                     setLoading(false);
-                }, 500);
+                }, 400);
             }
         };
 
@@ -43,12 +42,12 @@ export function Loader({ children }: LoaderProps) {
 
         window.addEventListener("heroImagesLoaded", handleHeroImagesLoad);
 
-        // Fail-safe: if something goes wrong, don't block the user forever
+        // Fail-safe
         const fallback = setTimeout(() => {
             heroImagesReady = true;
             assetsLoaded = true;
             checkReady();
-        }, 10000);
+        }, 8000);
 
         return () => {
             window.removeEventListener("load", handleWindowLoad);
