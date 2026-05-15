@@ -12,46 +12,11 @@ export function Loader({ children }: LoaderProps) {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        let assetsLoaded = false;
-        let heroImagesReady = false;
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 2000);
 
-        const checkReady = () => {
-            if (assetsLoaded && heroImagesReady) {
-                setLoading(false);
-            }
-        };
-
-        const handleWindowLoad = () => {
-            assetsLoaded = true;
-            checkReady();
-        };
-
-        const handleHeroImagesLoad = () => {
-            heroImagesReady = true;
-            checkReady();
-        };
-
-        if (document.readyState === "complete") {
-            assetsLoaded = true;
-            checkReady();
-        } else {
-            window.addEventListener("load", handleWindowLoad);
-        }
-
-        window.addEventListener("heroImagesLoaded", handleHeroImagesLoad);
-
-        // Fail-safe
-        const fallback = setTimeout(() => {
-            heroImagesReady = true;
-            assetsLoaded = true;
-            checkReady();
-        }, 10000);
-
-        return () => {
-            window.removeEventListener("load", handleWindowLoad);
-            window.removeEventListener("heroImagesLoaded", handleHeroImagesLoad);
-            clearTimeout(fallback);
-        };
+        return () => clearTimeout(timer);
     }, []);
 
     return (
