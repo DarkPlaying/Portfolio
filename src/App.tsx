@@ -10,7 +10,6 @@ import { Footer } from './components/Footer';
 
 import { AboutMe } from './components/AboutMe';
 import { ScrollVideoPart2 } from './components/ScrollVideoPart2';
-import { SpotlightCursor } from './components/ui/spotlight-cursor';
 
 function App() {
   useEffect(() => {
@@ -49,7 +48,6 @@ function App() {
 
   return (
     <>
-      <SpotlightCursor config={{ color: '#FFFFFF', radius: 400, brightness: 0.15 }} />
       <Navbar />
       <div className="min-h-screen bg-black text-white font-sans selection:bg-blue-500/30 pb-0 relative">
         <main>
