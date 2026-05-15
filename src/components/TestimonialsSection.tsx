@@ -92,9 +92,9 @@ export const TestimonialsSection = () => (
                         arrowHoverBackground: "#ff0050",
                     }}
                     fontSizes={{
-                        name: "28px",
-                        designation: "20px",
-                        quote: "20px",
+                        name: "clamp(20px, 5vw, 28px)",
+                        designation: "clamp(14px, 4vw, 20px)",
+                        quote: "clamp(14px, 4vw, 20px)",
                     }}
                 />
             </motion.div>

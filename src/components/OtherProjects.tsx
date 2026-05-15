@@ -80,7 +80,7 @@ export function OtherProjects() {
                             Passionate about building AI-driven systems and secure digital platforms. Eager to contribute and grow in a dynamic tech environment.
                         </p>
                     </div>
-                    <div className="text-right flex flex-col items-end gap-2 font-mono text-[9px] uppercase tracking-widest text-white/50 relative z-10 transition-colors hover:text-white">
+                    <div className="text-left md:text-right flex flex-col items-start md:items-end gap-2 font-mono text-[9px] uppercase tracking-widest text-white/50 relative z-10 transition-colors hover:text-white">
                         <span>Puzhal, chennai-600006</span>
                         <span>sanjaymofficialmail@gmail.com</span>
                         <span className="text-yellow-accent font-bold">
