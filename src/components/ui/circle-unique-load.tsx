@@ -1,10 +1,7 @@
 "use client";
 import React from "react";
 import { PlusIcon } from "lucide-react";
-
-type loadingProps = {
-  screenHFull?: boolean;
-};
+import { motion } from "framer-motion";
 
 export function Loading({ screenHFull = true, percentage = 0 }: { screenHFull?: boolean; percentage?: number }) {
   const [state, setState] = React.useState("_");
