@@ -9,7 +9,6 @@ import { TestimonialsSection } from './components/TestimonialsSection';
 import { Footer } from './components/Footer';
 
 import { AboutMe } from './components/AboutMe';
-import { Loader } from './components/Loader';
 import { ScrollVideoPart2 } from './components/ScrollVideoPart2';
 
 function App() {
