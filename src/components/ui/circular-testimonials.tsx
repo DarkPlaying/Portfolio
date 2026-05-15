@@ -173,10 +173,10 @@ export const CircularTestimonials = ({
     };
 
     return (
-        <div className="w-full max-w-[56rem] p-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+        <div className="w-full max-w-[56rem] p-4 md:p-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20">
                 {/* Images */}
-                <div className="relative w-full h-[24rem] perspective-[1000px]" ref={imageContainerRef}>
+                <div className="relative w-full h-[14rem] md:h-[24rem] perspective-[1000px]" ref={imageContainerRef}>
                     {testimonials.map((testimonial, index) => (
                         <img
                             key={testimonial.src}
