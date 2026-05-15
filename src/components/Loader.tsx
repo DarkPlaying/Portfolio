@@ -17,9 +17,7 @@ export function Loader({ children }: LoaderProps) {
 
         const checkReady = () => {
             if (assetsLoaded && heroImagesReady) {
-                setTimeout(() => {
-                    setLoading(false);
-                }, 100);
+                setLoading(false);
             }
         };
 
@@ -62,8 +60,8 @@ export function Loader({ children }: LoaderProps) {
                 <motion.div
                     key="loader"
                     initial={{ opacity: 1 }}
-                    exit={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    exit={{ opacity: 0, scale: 1.02, filter: "blur(5px)" }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
                     className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#050505]"
                 >
                     <CircleLoader screenHFull={false} />
@@ -73,7 +71,7 @@ export function Loader({ children }: LoaderProps) {
                     key="content"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.2 }}
                     className="contents"
                 >
                     {children}
