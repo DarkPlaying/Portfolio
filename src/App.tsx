@@ -39,7 +39,7 @@ function App() {
   }, []);
 
   return (
-    <Loader>
+    <>
       <Navbar />
       <div className="min-h-screen bg-black text-white font-sans selection:bg-blue-500/30 pb-0 relative">
         <main>
@@ -56,7 +56,7 @@ function App() {
           <Footer />
         </main>
       </div>
-    </Loader >
+    </>
   );
 }
 

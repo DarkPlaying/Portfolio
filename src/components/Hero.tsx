@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useScroll, useTransform, motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import { Loading as CircleLoader } from './ui/circle-unique-load';
 
 const FRAME_COUNT = 160;
 
@@ -67,6 +68,7 @@ export function Hero() {
     const [images, setImages] = useState<HTMLImageElement[]>([]);
     const [imagesLoaded, setImagesLoaded] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
+    const [isHeroLoading, setIsHeroLoading] = useState(true);
 
     const { scrollYProgress } = useScroll({
         target: sectionRef,
@@ -89,8 +91,15 @@ export function Hero() {
         const isMobileView = window.innerWidth < 1024;
         if (isMobileView) {
             setIsMobile(true);
+            setIsHeroLoading(false);
             return;
         }
+
+        // Start local loader for 2 seconds
+        const loadingTimer = setTimeout(() => {
+            setIsHeroLoading(false);
+            preloadImages();
+        }, 2000);
 
         // Aggressive parallel loading strategy
         const preloadImages = () => {
@@ -107,10 +116,6 @@ export function Hero() {
                 img.onload = () => {
                     loadedCount++;
                     setImagesLoaded(loadedCount);
-                    // Signal ready after the first 10 frames are loaded (fast entry)
-                    if (loadedCount === 10) {
-                        window.dispatchEvent(new CustomEvent('heroImagesLoaded'));
-                    }
                 };
                 img.onerror = () => {
                     loadedCount++;
@@ -121,12 +126,13 @@ export function Hero() {
             setImages(loadedImages);
         };
 
-        preloadImages();
-
         const checkMobile = () => setIsMobile(window.innerWidth < 1024);
         checkMobile();
         window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
+        return () => {
+            window.removeEventListener('resize', checkMobile);
+            clearTimeout(loadingTimer);
+        };
     }, []);
 
     useEffect(() => {
@@ -258,6 +264,19 @@ export function Hero() {
                     </div>
                 </motion.div>
 
+                {/* Local Loader Overlay */}
+                <AnimatePresence>
+                    {isHeroLoading && (
+                        <motion.div
+                            initial={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="absolute inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md"
+                        >
+                            <CircleLoader screenHFull={false} />
+                        </motion.div>
+                    )}
+                </AnimatePresence>
 
                 <AnimatePresence>
                     {isMobile && (
