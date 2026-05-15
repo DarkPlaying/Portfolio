@@ -10,6 +10,7 @@ import { Footer } from './components/Footer';
 
 import { AboutMe } from './components/AboutMe';
 import { ScrollVideoPart2 } from './components/ScrollVideoPart2';
+import TechCursor from './components/ui/tech-cursor';
 
 function App() {
   useEffect(() => {
@@ -48,6 +49,7 @@ function App() {
 
   return (
     <>
+      <TechCursor />
       <Navbar />
       <div className="min-h-screen bg-black text-white font-sans selection:bg-blue-500/30 pb-0 relative">
         <main>
