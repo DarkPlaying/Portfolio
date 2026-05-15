@@ -60,8 +60,8 @@ export function Loader({ children }: LoaderProps) {
                 <motion.div
                     key="loader"
                     initial={{ opacity: 1 }}
-                    exit={{ opacity: 0, scale: 1.02, filter: "blur(5px)" }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    exit={{ opacity: 0, filter: "blur(5px)" }}
+                    transition={{ duration: 0.1, ease: "linear" }}
                     className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#050505]"
                 >
                     <CircleLoader screenHFull={false} />
@@ -71,7 +71,7 @@ export function Loader({ children }: LoaderProps) {
                     key="content"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: 0.1 }}
                     className="contents"
                 >
                     {children}

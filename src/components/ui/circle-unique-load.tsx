@@ -28,7 +28,7 @@ export function Loading({ screenHFull = true }: loadingProps) {
         setState("_");
         setLoadText("Fetching");
       }
-    }, 150);
+    }, 400);
 
     return () => clearInterval(interval);
   }, [state]);
@@ -52,8 +52,8 @@ export function Loading({ screenHFull = true }: loadingProps) {
 
   return (
     <div className={`${screenHFull ? "min-h-screen" : ""} relative flex flex-col items-center justify-center`}>
-      <div className={`p-1 border border-dashed rounded-full animate-spin-fast ${colorClass}`}>
-        <div className={`w-16 h-16 border-4 border-dashed rounded-full flex justify-center items-center animate-spin-fast ${colorClass}`}>
+      <div className={`p-1 border border-dashed rounded-full animate-spin ${colorClass}`}>
+        <div className={`w-16 h-16 border-4 border-dashed rounded-full flex justify-center items-center animate-spin ${colorClass}`}>
           <PlusIcon />
         </div>
       </div>
