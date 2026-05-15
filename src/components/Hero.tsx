@@ -103,23 +103,35 @@ export function Hero() {
             setIsHeroLoading(false);
         }, 2000);
 
-        // Aggressive parallel loading strategy
-        function preloadImages() {
+        // Priority-based parallel loading strategy
+        async function preloadImages() {
             const loadedImages: HTMLImageElement[] = [];
             let loadedCount = 0;
 
-            // Prioritize frame 1 to avoid blank screen
+            // 1. STAGE ONE: Load frame 001 with absolute priority
             const firstImg = new Image();
-            firstImg.src = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/me/ezgif-frame-001.jpg`;
-            firstImg.onload = () => {
-                loadedImages[0] = firstImg;
-                setImages([...loadedImages]);
-            };
+            const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
+            firstImg.src = `${baseUrl}/me/ezgif-frame-001.jpg`;
+            
+            await new Promise<void>((resolve) => {
+                firstImg.onload = () => {
+                    loadedImages[0] = firstImg;
+                    setImages([...loadedImages]);
+                    resolve();
+                };
+                firstImg.onerror = () => resolve();
+            });
 
+            // 2. STAGE TWO: Load the rest of the images
             for (let i = 1; i <= FRAME_COUNT; i++) {
+                if (i === 1) {
+                    loadedCount++;
+                    setImagesLoaded(loadedCount);
+                    continue;
+                }
+
                 const img = new Image();
                 const formattedIndex = i.toString().padStart(3, '0');
-                const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
                 const extension = i <= 3 ? 'jpg' : 'webp';
                 img.src = `${baseUrl}/me/ezgif-frame-${formattedIndex}.${extension}`;
                 
@@ -127,8 +139,8 @@ export function Hero() {
                     loadedCount++;
                     setImagesLoaded(loadedCount);
                     loadedImages[i - 1] = img;
-                    // Only update state occasionally or for the first few frames to keep it snappy
-                    if (loadedCount < 10 || loadedCount % 20 === 0) {
+                    // Batch updates to keep UI responsive
+                    if (loadedCount < 5 || loadedCount % 15 === 0 || loadedCount === FRAME_COUNT) {
                         setImages([...loadedImages]);
                     }
                 };
