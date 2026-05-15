@@ -102,18 +102,19 @@ export function Hero() {
                     const img = new Image();
                     const formattedIndex = index.toString().padStart(3, '0');
                     const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
-                    img.src = `${baseUrl}/me/ezgif-frame-${formattedIndex}.webp`;
+                    const extension = index <= 3 ? 'jpg' : 'webp';
+                    img.src = `${baseUrl}/me/ezgif-frame-${formattedIndex}.${extension}`;
                     
                     img.onload = () => {
                         loadedCount++;
                         setImagesLoaded(loadedCount);
-                        // Signal ready after the first 30 frames are loaded (enough for initial view and start of scroll)
+                        // Signal ready after the first 30 frames are loaded
                         if (loadedCount === 30) {
                             window.dispatchEvent(new CustomEvent('heroImagesLoaded'));
                         }
                         resolve();
                     };
-                    img.onerror = () => resolve(); // Don't block on error
+                    img.onerror = () => resolve();
                     loadedImages[index - 1] = img;
                 });
             };
