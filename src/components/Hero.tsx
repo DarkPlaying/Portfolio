@@ -131,38 +131,57 @@ export function Hero() {
                 firstImg.onerror = () => resolve();
             });
 
-            // Stage 2: Parallel load the rest
+            // Stage 2: Parallel load the rest with Fetch Priority
+            const loadWithPriority = (index: number) => {
+                const formattedIndex = index.toString().padStart(3, '0');
+                const extension = index <= 3 ? 'jpg' : 'webp';
+                const url = `${baseUrl}/me/ezgif-frame-${formattedIndex}.${extension}`;
+                
+                // Use fetch for priority control, then convert to Image object for canvas
+                // 'high' priority for the first 40 frames (the part the user sees first)
+                // 'low' for the rest to avoid clogging the pipe
+                return fetch(url, { priority: index <= 40 ? 'high' : 'low' })
+                    .then(response => response.blob())
+                    .then(blob => {
+                        return new Promise<void>((resolve) => {
+                            const img = new Image();
+                            img.src = URL.createObjectURL(blob);
+                            img.onload = () => {
+                                loadedCount++;
+                                setImagesLoaded(loadedCount);
+                                loadedImages[index - 1] = img;
+
+                                if (loadedCount === FRAME_COUNT && !minimumImagesLoaded) {
+                                    minimumImagesLoaded = true;
+                                    checkReady();
+                                }
+
+                                if (loadedCount < 10 || loadedCount % 20 === 0 || loadedCount === FRAME_COUNT) {
+                                    setImages([...loadedImages]);
+                                }
+                                resolve();
+                            };
+                            img.onerror = () => {
+                                loadedCount++;
+                                setImagesLoaded(loadedCount);
+                                resolve();
+                            };
+                        });
+                    })
+                    .catch(() => {
+                        loadedCount++;
+                        setImagesLoaded(loadedCount);
+                    });
+            };
+
+            // Start all requests but the browser will honor priorities
             for (let i = 1; i <= FRAME_COUNT; i++) {
                 if (i === 1) {
                     loadedCount++;
                     setImagesLoaded(loadedCount);
                     continue;
                 }
-
-                const img = new Image();
-                const formattedIndex = i.toString().padStart(3, '0');
-                const extension = i <= 3 ? 'jpg' : 'webp';
-                img.src = `${baseUrl}/me/ezgif-frame-${formattedIndex}.${extension}`;
-                
-                img.onload = () => {
-                    loadedCount++;
-                    setImagesLoaded(loadedCount);
-                    loadedImages[i - 1] = img;
-
-                    // Condition: Signal ready ONLY after ALL images (100%) are loaded
-                    if (loadedCount === FRAME_COUNT && !minimumImagesLoaded) {
-                        minimumImagesLoaded = true;
-                        checkReady();
-                    }
-
-                    if (loadedCount < 10 || loadedCount % 15 === 0 || loadedCount === FRAME_COUNT) {
-                        setImages([...loadedImages]);
-                    }
-                };
-                img.onerror = () => {
-                    loadedCount++;
-                    setImagesLoaded(loadedCount);
-                };
+                loadWithPriority(i);
             }
         }
 
