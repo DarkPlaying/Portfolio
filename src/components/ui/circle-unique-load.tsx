@@ -6,7 +6,7 @@ type loadingProps = {
   screenHFull?: boolean;
 };
 
-export function Loading({ screenHFull = true }: loadingProps) {
+export function Loading({ screenHFull = true, percentage = 0 }: { screenHFull?: boolean; percentage?: number }) {
   const [state, setState] = React.useState("_");
   const [loadText, setLoadText] = React.useState("Fetching");
 
@@ -58,10 +58,17 @@ export function Loading({ screenHFull = true }: loadingProps) {
         </div>
       </div>
 
-      <p className="text-sm font-bold uppercase tracking-widest text-center mt-2">
-        {loadText}
-        <span className={`ml-1 ${colorClass}`}>{state}</span>
-      </p>
+      <div className="mt-4 text-center">
+        <p className="text-sm font-bold uppercase tracking-widest">
+          {loadText}
+          <span className={`ml-1 ${colorClass}`}>{state}</span>
+        </p>
+        {percentage > 0 && (
+          <p className="text-[10px] font-mono mt-1 opacity-60">
+            {Math.round(percentage)}%
+          </p>
+        )}
+      </div>
     </div>
   );
 }

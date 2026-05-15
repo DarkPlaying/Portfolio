@@ -95,24 +95,33 @@ export function Hero() {
             return;
         }
 
-        // 1. Start preloading images IMMEDIATELY in the background
+        let minimumTimeElapsed = false;
+        let minimumImagesLoaded = false;
+
+        const checkReady = () => {
+            if (minimumTimeElapsed && minimumImagesLoaded) {
+                setIsHeroLoading(false);
+            }
+        };
+
+        // 1. Start preloading images IMMEDIATELY
         preloadImages();
 
-        // 2. Still show local loader for 2 seconds for visual effect
+        // 2. Minimum 2-second visual timer
         const loadingTimer = setTimeout(() => {
-            setIsHeroLoading(false);
+            minimumTimeElapsed = true;
+            checkReady();
         }, 2000);
 
-        // Priority-based parallel loading strategy
         async function preloadImages() {
             const loadedImages: HTMLImageElement[] = [];
             let loadedCount = 0;
 
-            // 1. STAGE ONE: Load frame 001 with absolute priority
-            const firstImg = new Image();
             const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
-            firstImg.src = `${baseUrl}/me/ezgif-frame-001.jpg`;
             
+            // Priority Stage 1: Frame 001
+            const firstImg = new Image();
+            firstImg.src = `${baseUrl}/me/ezgif-frame-001.jpg`;
             await new Promise<void>((resolve) => {
                 firstImg.onload = () => {
                     loadedImages[0] = firstImg;
@@ -122,7 +131,7 @@ export function Hero() {
                 firstImg.onerror = () => resolve();
             });
 
-            // 2. STAGE TWO: Load the rest of the images
+            // Stage 2: Parallel load the rest
             for (let i = 1; i <= FRAME_COUNT; i++) {
                 if (i === 1) {
                     loadedCount++;
@@ -139,8 +148,14 @@ export function Hero() {
                     loadedCount++;
                     setImagesLoaded(loadedCount);
                     loadedImages[i - 1] = img;
-                    // Batch updates to keep UI responsive
-                    if (loadedCount < 5 || loadedCount % 15 === 0 || loadedCount === FRAME_COUNT) {
+
+                    // Condition: Signal ready after 10 images
+                    if (loadedCount >= 10 && !minimumImagesLoaded) {
+                        minimumImagesLoaded = true;
+                        checkReady();
+                    }
+
+                    if (loadedCount < 10 || loadedCount % 15 === 0 || loadedCount === FRAME_COUNT) {
                         setImages([...loadedImages]);
                     }
                 };
@@ -298,7 +313,10 @@ export function Hero() {
                             transition={{ duration: 0.5 }}
                             className="absolute inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md"
                         >
-                            <CircleLoader screenHFull={false} />
+                            <CircleLoader 
+                                screenHFull={false} 
+                                percentage={(imagesLoaded / FRAME_COUNT) * 100}
+                            />
                         </motion.div>
                     )}
                 </AnimatePresence>
