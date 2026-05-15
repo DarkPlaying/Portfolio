@@ -108,8 +108,8 @@ export function Hero() {
                     img.onload = () => {
                         loadedCount++;
                         setImagesLoaded(loadedCount);
-                        // Signal ready after the first 30 frames are loaded
-                        if (loadedCount === 30) {
+                        // Signal ready after the first 10 frames are loaded
+                        if (loadedCount === 10) {
                             window.dispatchEvent(new CustomEvent('heroImagesLoaded'));
                         }
                         resolve();

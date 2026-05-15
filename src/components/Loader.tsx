@@ -19,7 +19,7 @@ export function Loader({ children }: LoaderProps) {
             if (assetsLoaded && heroImagesReady) {
                 setTimeout(() => {
                     setLoading(false);
-                }, 400);
+                }, 100);
             }
         };
 
