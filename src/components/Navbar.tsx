@@ -42,14 +42,20 @@ export function Navbar() {
                 return { name: link.name, top: rect.top, bottom: rect.bottom };
             }).filter(Boolean) as { name: string, top: number, bottom: number }[];
 
-            // Add about-details manually to the observed sections for mapping
+            // Add additional sections that belong to the "About" link
             const aboutDetails = document.getElementById('about-details');
             if (aboutDetails) {
                 const rect = aboutDetails.getBoundingClientRect();
                 sections.push({ name: 'About', top: rect.top, bottom: rect.bottom });
             }
 
-            // Same for projects-details
+            const aboutSection = document.getElementById('about-section');
+            if (aboutSection) {
+                const rect = aboutSection.getBoundingClientRect();
+                sections.push({ name: 'About', top: rect.top, bottom: rect.bottom });
+            }
+
+            // Add additional sections that belong to the "Projects" link
             const projectDetails = document.getElementById('projects-details');
             if (projectDetails) {
                 const rect = projectDetails.getBoundingClientRect();

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Loading as CircleLoader } from "./ui/circle-unique-load"
+import { PrismFluxLoader } from "./ui/prism-flux-loader"
 
 interface LoaderProps {
     children: React.ReactNode
@@ -29,7 +29,7 @@ export function Loader({ children }: LoaderProps) {
                     transition={{ duration: 0.4, ease: "easeOut" }}
                     className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#050505]"
                 >
-                    <CircleLoader screenHFull={false} />
+                    <PrismFluxLoader screenHFull={false} percentage={100} />
                 </motion.div>
             ) : (
                 <motion.div

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useScroll, useTransform, motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import { Loading as CircleLoader } from './ui/circle-unique-load';
+import { PrismFluxLoader } from './ui/prism-flux-loader';
 
 const FRAME_COUNT = 160;
 
@@ -83,7 +83,7 @@ export function Hero() {
     const visibility = useTransform(opacity, (val) => val <= 0 ? "hidden" : "visible");
 
     // Desktop "About Me" text overlay transforms synchronized with video frame sequence
-    const aboutTextOpacity = useTransform(frameIndex, [73, 75, 145, 155], [0, 1, 1, 0]);
+    const aboutTextOpacity = useTransform(frameIndex, [73, 75, 150, 160], [0, 1, 1, 0]);
     const aboutTextY = useTransform(frameIndex, [73, 75], [30, 0]);
     const aboutTextPointerEvents = useTransform(aboutTextOpacity, (val) => val > 0.1 ? "auto" : "none");
 
@@ -253,7 +253,7 @@ export function Hero() {
     return (
         <section id="home" ref={sectionRef} className={`relative ${isMobile ? 'h-screen' : 'h-[300vh]'} bg-black z-0 snap-start`}>
             <div id="hero-start" className="absolute top-0 h-1 w-1" />
-            <div id="about" className="absolute top-[79%] bottom-0 w-full pointer-events-none" />
+            <div id="about" className="absolute top-[65%] bottom-0 w-full pointer-events-none" />
 
             <motion.div
                 style={{
@@ -287,7 +287,7 @@ export function Hero() {
 
                 {/* Desktop Overlay Text synchronized to display starting at frame 75 */}
                 <motion.div
-                    id="about-details"
+                    id="hero-about-overlay"
                     style={{
                         opacity: aboutTextOpacity,
                         y: aboutTextY,
@@ -332,7 +332,7 @@ export function Hero() {
                             transition={{ duration: 0.5 }}
                             className="absolute inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md"
                         >
-                            <CircleLoader 
+                            <PrismFluxLoader 
                                 screenHFull={false} 
                                 percentage={(imagesLoaded / FRAME_COUNT) * 100}
                             />

@@ -13,6 +13,15 @@ import { ScrollVideoPart2 } from './components/ScrollVideoPart2';
 
 function App() {
   useEffect(() => {
+    // Force start at top on reload
+    if (typeof window !== 'undefined') {
+      window.history.scrollRestoration = 'manual';
+      if (window.location.hash) {
+        window.history.replaceState(null, '', window.location.pathname);
+      }
+      window.scrollTo(0, 0);
+    }
+
     const lenis = new Lenis({
       duration: 0.4,
       lerp: 0.4,
