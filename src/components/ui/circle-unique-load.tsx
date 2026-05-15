@@ -58,16 +58,25 @@ export function Loading({ screenHFull = true, percentage = 0 }: { screenHFull?: 
         </div>
       </div>
 
-      <div className="mt-4 text-center">
+      <div className="mt-4 text-center w-48">
         <p className="text-sm font-bold uppercase tracking-widest">
           {loadText}
           <span className={`ml-1 ${colorClass}`}>{state}</span>
         </p>
-        {percentage > 0 && (
-          <p className="text-[10px] font-mono mt-1 opacity-60">
-            {Math.round(percentage)}%
-          </p>
-        )}
+        
+        {/* Progress Bar Container */}
+        <div className="mt-3 h-1.5 w-full bg-white/10 rounded-full overflow-hidden border border-white/5">
+          <motion.div 
+            initial={{ width: 0 }}
+            animate={{ width: `${percentage}%` }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className={`h-full bg-gradient-to-r from-lime-400 via-sky-400 to-yellow-400`}
+          />
+        </div>
+
+        <p className="text-[10px] font-mono mt-2 opacity-60 tracking-widest">
+          {Math.round(percentage)}% COMPLETED
+        </p>
       </div>
     </div>
   );

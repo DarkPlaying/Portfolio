@@ -149,8 +149,8 @@ export function Hero() {
                     setImagesLoaded(loadedCount);
                     loadedImages[i - 1] = img;
 
-                    // Condition: Signal ready after 10 images
-                    if (loadedCount >= 10 && !minimumImagesLoaded) {
+                    // Condition: Signal ready ONLY after ALL images (100%) are loaded
+                    if (loadedCount === FRAME_COUNT && !minimumImagesLoaded) {
                         minimumImagesLoaded = true;
                         checkReady();
                     }
