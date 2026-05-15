@@ -12,11 +12,46 @@ export function Loader({ children }: LoaderProps) {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setLoading(false);
-        }, 2000);
+        let assetsLoaded = false;
+        let heroImagesReady = false;
 
-        return () => clearTimeout(timer);
+        const checkReady = () => {
+            if (assetsLoaded && heroImagesReady) {
+                setLoading(false);
+            }
+        };
+
+        const handleWindowLoad = () => {
+            assetsLoaded = true;
+            checkReady();
+        };
+
+        const handleHeroImagesLoad = () => {
+            heroImagesReady = true;
+            checkReady();
+        };
+
+        if (document.readyState === "complete") {
+            assetsLoaded = true;
+            checkReady();
+        } else {
+            window.addEventListener("load", handleWindowLoad);
+        }
+
+        window.addEventListener("heroImagesLoaded", handleHeroImagesLoad);
+
+        // Fail-safe
+        const fallback = setTimeout(() => {
+            heroImagesReady = true;
+            assetsLoaded = true;
+            checkReady();
+        }, 10000);
+
+        return () => {
+            window.removeEventListener("load", handleWindowLoad);
+            window.removeEventListener("heroImagesLoaded", handleHeroImagesLoad);
+            clearTimeout(fallback);
+        };
     }, []);
 
     return (

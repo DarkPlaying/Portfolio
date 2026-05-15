@@ -92,47 +92,36 @@ export function Hero() {
             return;
         }
 
-        // Optimized batched loading strategy
-        const preloadImages = async () => {
+        // Aggressive parallel loading strategy
+        const preloadImages = () => {
             const loadedImages: HTMLImageElement[] = [];
             let loadedCount = 0;
 
-            const loadImg = (index: number) => {
-                return new Promise<void>((resolve) => {
-                    const img = new Image();
-                    const formattedIndex = index.toString().padStart(3, '0');
-                    const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
-                    const extension = index <= 3 ? 'jpg' : 'webp';
-                    img.src = `${baseUrl}/me/ezgif-frame-${formattedIndex}.${extension}`;
-                    
-                    img.onload = () => {
-                        loadedCount++;
-                        setImagesLoaded(loadedCount);
-                        resolve();
-                    };
-                    img.onerror = () => resolve();
-                    loadedImages[index - 1] = img;
-                });
-            };
-
-            // 1. Load first 30 frames with high priority
-            const initialBatch = [];
-            for (let i = 1; i <= 30; i++) {
-                initialBatch.push(loadImg(i));
+            for (let i = 1; i <= FRAME_COUNT; i++) {
+                const img = new Image();
+                const formattedIndex = i.toString().padStart(3, '0');
+                const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
+                const extension = i <= 3 ? 'jpg' : 'webp';
+                img.src = `${baseUrl}/me/ezgif-frame-${formattedIndex}.${extension}`;
+                
+                img.onload = () => {
+                    loadedCount++;
+                    setImagesLoaded(loadedCount);
+                    // Signal ready after the first 10 frames are loaded (fast entry)
+                    if (loadedCount === 10) {
+                        window.dispatchEvent(new CustomEvent('heroImagesLoaded'));
+                    }
+                    if (loadedCount === FRAME_COUNT) {
+                        // All loaded
+                    }
+                };
+                img.onerror = () => {
+                    loadedCount++;
+                    setImagesLoaded(loadedCount);
+                };
+                loadedImages[i - 1] = img;
             }
-            await Promise.all(initialBatch);
-            setImages([...loadedImages]);
-
-            // 2. Load remaining frames in batches to avoid network choking
-            const remainingIndices = [];
-            for (let i = 31; i <= FRAME_COUNT; i++) remainingIndices.push(i);
-            
-            const batchSize = 10;
-            for (let i = 0; i < remainingIndices.length; i += batchSize) {
-                const batch = remainingIndices.slice(i, i + batchSize).map(loadImg);
-                await Promise.all(batch);
-                setImages([...loadedImages]);
-            }
+            setImages(loadedImages);
         };
 
         preloadImages();
