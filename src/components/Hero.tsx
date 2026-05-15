@@ -102,7 +102,7 @@ export function Hero() {
                     const img = new Image();
                     const formattedIndex = index.toString().padStart(3, '0');
                     const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
-                    img.src = `${baseUrl}/me/ezgif-frame-${formattedIndex}.jpg`;
+                    img.src = `${baseUrl}/me/ezgif-frame-${formattedIndex}.webp`;
                     
                     img.onload = () => {
                         loadedCount++;
