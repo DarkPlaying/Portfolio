@@ -95,16 +95,26 @@ export function Hero() {
             return;
         }
 
-        // Start local loader for 2 seconds
+        // 1. Start preloading images IMMEDIATELY in the background
+        preloadImages();
+
+        // 2. Still show local loader for 2 seconds for visual effect
         const loadingTimer = setTimeout(() => {
             setIsHeroLoading(false);
-            preloadImages();
         }, 2000);
 
         // Aggressive parallel loading strategy
-        const preloadImages = () => {
+        function preloadImages() {
             const loadedImages: HTMLImageElement[] = [];
             let loadedCount = 0;
+
+            // Prioritize frame 1 to avoid blank screen
+            const firstImg = new Image();
+            firstImg.src = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/me/ezgif-frame-001.jpg`;
+            firstImg.onload = () => {
+                loadedImages[0] = firstImg;
+                setImages([...loadedImages]);
+            };
 
             for (let i = 1; i <= FRAME_COUNT; i++) {
                 const img = new Image();
@@ -116,15 +126,18 @@ export function Hero() {
                 img.onload = () => {
                     loadedCount++;
                     setImagesLoaded(loadedCount);
+                    loadedImages[i - 1] = img;
+                    // Only update state occasionally or for the first few frames to keep it snappy
+                    if (loadedCount < 10 || loadedCount % 20 === 0) {
+                        setImages([...loadedImages]);
+                    }
                 };
                 img.onerror = () => {
                     loadedCount++;
                     setImagesLoaded(loadedCount);
                 };
-                loadedImages[i - 1] = img;
             }
-            setImages(loadedImages);
-        };
+        }
 
         const checkMobile = () => setIsMobile(window.innerWidth < 1024);
         checkMobile();
