@@ -11,6 +11,11 @@ export const resumeData = {
     objective: "Aspiring Computer Science student with practical experience in web development, programming, and cybersecurity. Passionate about building AI-driven systems and secure digital platforms. Eager to contribute and grow in a dynamic tech environment.",
     education: [
         {
+            institution: "Jaya Arts and Science College",
+            degree: "MCA General",
+            score: "Pursuing",
+        },
+        {
             institution: "Vel Tech Ranga Sanku Arts College",
             degree: "B.Sc Computer Science",
             score: "CGPA: 9.0 (Till 5 Semester)",

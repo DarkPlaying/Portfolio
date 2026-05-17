@@ -118,7 +118,12 @@ export function OtherProjects() {
                         </div>
                         <div className="space-y-8 relative z-10">
                             <div>
-                                <h4 className="text-sm font-bold font-mono text-yellow-accent uppercase mb-2 tracking-widest">B.Sc Computer Science</h4>
+                                <h4 className="text-sm font-bold font-mono text-yellow-accent uppercase mb-2 tracking-widest">MCA General</h4>
+                                <p className="text-white text-sm font-light leading-relaxed opacity-90">Jaya Arts and Science College</p>
+                                <p className="text-white text-xs font-mono font-bold mt-1">Pursuing</p>
+                            </div>
+                            <div>
+                                <h4 className="text-sm font-bold font-mono text-white/60 uppercase mb-2 tracking-widest">B.Sc Computer Science</h4>
                                 <p className="text-white text-sm font-light leading-relaxed opacity-90">Vel Tech Ranga Sanku Arts College</p>
                                 <p className="text-white text-xs font-mono font-bold mt-1">CGPA: 9.1 (Till 5 Semester)</p>
                             </div>

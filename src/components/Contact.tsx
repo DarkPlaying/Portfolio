@@ -29,8 +29,8 @@ export function Contact() {
                         <div className="space-y-6">
                             <p className="text-yellow-accent font-bold uppercase tracking-[0.4em] text-[10px]">Keep Close</p>
                             <h2 className="text-5xl md:text-7xl font-black font-outfit text-white uppercase tracking-tight leading-none">Get In Touch</h2>
-                            <p className="text-white/40 text-sm leading-relaxed max-w-lg">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean que commodo ligula eget dolor. Aenean massa. Cum sociis nec natoqueque penatibus et magnis dis parturient montes, nascetur ridiculusser mus. Donec quam felis, ultricies nec, pellentesque eu, pretiumqu quis, sem. Nulla consequat massa quis enim.
+                            <p className="text-white/60 text-sm leading-relaxed max-w-lg font-light">
+                                I'm Sanjay M, an aspiring software developer and cybersecurity enthusiast from Chennai, holding a B.Sc. in Computer Science from Vel Tech Ranga Sanku Arts College and currently pursuing an M.C.A. General at Jaya Arts and Science College.
                             </p>
                         </div>
 

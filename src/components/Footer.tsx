@@ -49,8 +49,8 @@ export function Footer() {
                         <ul className="space-y-4">
                             {[
                                 { label: 'Home', href: '#home' },
-                                { label: 'About', href: '#about-trigger' },
-                                { label: 'Projects', href: '#projects-part2' },
+                                { label: 'About', href: '#about' },
+                                { label: 'Projects', href: '#projects' },
                                 { label: 'Contact', href: '#contact' }
                             ].map((link, idx) => (
                                 <li key={idx}>
@@ -62,15 +62,15 @@ export function Footer() {
 
                     {/* Status Column */}
                     <div>
-                        <h4 className="text-[10px] font-mono font-bold text-white uppercase tracking-[0.4em] mb-6 opacity-60">System Status</h4>
+                        <h4 className="text-[10px] font-mono font-bold text-white uppercase tracking-[0.4em] mb-6 opacity-60">Availability</h4>
                         <div className="space-y-4">
                             <div className="flex items-center gap-3">
                                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)] animate-pulse" />
-                                <span className="text-white/60 text-[10px] font-mono uppercase tracking-wider">Interface Online</span>
+                                <span className="text-white/80 text-[10px] font-mono uppercase tracking-wider">Available for Freelance</span>
                             </div>
                             <div className="flex items-center gap-3">
-                                <div className="w-1.5 h-1.5 rounded-full bg-[#ff0050] shadow-[0_0_8px_rgba(255,0,80,0.6)]" />
-                                <span className="text-white/60 text-[10px] font-mono uppercase tracking-wider">v2.0 Deploy Ready</span>
+                                <div className="w-1.5 h-1.5 rounded-full bg-yellow-accent shadow-[0_0_8px_rgba(255,184,0,0.6)] animate-pulse" />
+                                <span className="text-white/80 text-[10px] font-mono uppercase tracking-wider">Open to Collaborations</span>
                             </div>
                         </div>
                     </div>

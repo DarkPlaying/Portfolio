@@ -33,7 +33,7 @@ export function AboutMe() {
                         style={{ y: y2, opacity }}
                         className="text-white/80 font-mono text-[11px] md:text-sm leading-relaxed tracking-[0.15em] uppercase max-w-sm drop-shadow-sm flex flex-wrap justify-center gap-x-2"
                     >
-                        {"I'M SANJAY M, AN ASPIRING SOFTWARE DEVELOPER AND CYBERSECURITY ENTHUSIAST FROM CHENNAI, HOLDING A B.SC. IN COMPUTER SCIENCE FROM VEL TECH RANGA SANKU ARTS COLLEGE AND CURRENTLY PURSUING AN M.C.A. IN COMPUTER APPLICATIONS.".split(" ").map((word, i) => (
+                        {"I'M SANJAY M, AN ASPIRING SOFTWARE DEVELOPER AND CYBERSECURITY ENTHUSIAST FROM CHENNAI, HOLDING A B.SC. IN COMPUTER SCIENCE FROM VEL TECH RANGA SANKU ARTS COLLEGE AND CURRENTLY PURSUING AN M.C.A. GENERAL AT JAYA ARTS AND SCIENCE COLLEGE.".split(" ").map((word, i) => (
                             <motion.span
                                 key={i}
                                 initial={{ opacity: 0, filter: "blur(10px)", y: 10 }}
